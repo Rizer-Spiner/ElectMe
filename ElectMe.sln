@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectMe WebClient", "ElectMe WebClient\ElectMe WebClient.csproj", "{8F18AE7B-BB47-4683-9910-2588A2589B01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectMe WebServer", "ElectMe WebServer\ElectMe WebServer.csproj", "{865BA60E-B0AA-4903-B285-AEBC1CE08188}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F18AE7B-BB47-4683-9910-2588A2589B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F18AE7B-BB47-4683-9910-2588A2589B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F18AE7B-BB47-4683-9910-2588A2589B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F18AE7B-BB47-4683-9910-2588A2589B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865BA60E-B0AA-4903-B285-AEBC1CE08188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865BA60E-B0AA-4903-B285-AEBC1CE08188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865BA60E-B0AA-4903-B285-AEBC1CE08188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865BA60E-B0AA-4903-B285-AEBC1CE08188}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
