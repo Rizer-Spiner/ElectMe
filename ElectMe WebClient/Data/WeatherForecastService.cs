@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace ElectMe_WebClient.Data
@@ -21,5 +22,7 @@ namespace ElectMe_WebClient.Data
                 Summary = Summaries[rng.Next(Summaries.Length)]
             }).ToArray());
         }
+        
+        
     }
 }
