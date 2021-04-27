@@ -54,7 +54,6 @@ namespace ElectMe_WebServer
                 Console.WriteLine("Tag is incorrect!");
             }
 
-
             CreateHostBuilder(args).Build().Run();
         }
 
