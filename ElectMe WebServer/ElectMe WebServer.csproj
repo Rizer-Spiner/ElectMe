@@ -9,4 +9,20 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="ECIES.util\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="ECIES.util\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="ECIES.util\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="ECIES.util\**" />
+    </ItemGroup>
+
 </Project>
