@@ -56,3 +56,61 @@ C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ref\Elec
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.pdb
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.genruntimeconfig.cache
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.csproj.CopyComplete
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\appsettings.Development.json
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\appsettings.json
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.StaticWebAssets.xml
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.exe
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.deps.json
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.runtimeconfig.json
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.runtimeconfig.dev.json
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.dll
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ref\ElectMe WebClient.dll
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.pdb
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.Views.dll
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.Views.pdb
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.csprojAssemblyReference.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.GeneratedMSBuildEditorConfig.editorconfig
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.AssemblyInfoInputs.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.AssemblyInfo.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.csproj.CoreCompileInputs.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.MvcApplicationPartsAssemblyInfo.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorComponent.input.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Pages\Counter.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorComponent.output.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\ElectMe WebClient.dll
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.TagHelpers.input.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.TagHelpers.output.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorCoreGenerate.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\App.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Counter.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorAssemblyInfo.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorAssemblyInfo.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\staticwebassets\ElectMe WebClient.StaticWebAssets.Manifest.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\staticwebassets\ElectMe WebClient.StaticWebAssets.xml
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\scopedcss\bundle\ElectMe WebClient.styles.css
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\scopedcss\projectbundle\ElectMe WebClient.bundle.scp.css
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorTargetAssemblyInfo.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorTargetAssemblyInfo.cs
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.Views.pdb
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.dll
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ref\ElectMe WebClient.dll
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.pdb
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.genruntimeconfig.cache
+D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.csproj.CopyComplete
