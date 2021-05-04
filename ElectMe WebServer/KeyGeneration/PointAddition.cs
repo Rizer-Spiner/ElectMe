@@ -15,7 +15,7 @@ namespace ElectMe_WebServer.KeyGeneration
         }
 
         /*---------------------------------------------------------------------------------------------------------------------------
-        Y
+        X
         ---------------------------------------------------------------------------------------------------------------------------*/
 
         private static BigInteger calculateX(EllipticCurve curve, EllipticCurvePoint point1, EllipticCurvePoint point2)
