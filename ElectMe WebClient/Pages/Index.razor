@@ -1,7 +1,50 @@
 ﻿@page "/"
+@using ElectMe_WebClient.Data
+@* @inject LoginService LoginService *@
+<h1>Hello, voter!</h1>
 
-<h1>Hello, world!</h1>
+Are you ready to vote?
 
-Welcome to your new app.
+@* <div aria-colspan="12" align="center"> *@
+@*     <EditForm Model="@identity" OnValidSubmit="@HandleLoginAttempt" OnInvalidSubmit="@InvalidCredentials"> *@
+@*         <DataAnnotationsValidator/> *@
+@*         <ValidationSummary/> *@
+@* *@
+@*         <div id="cpr"> *@
+@*             <div align="center" aria-colspan="3"> Cpr number:</div> *@
+@*             <div align="center" aria-colspan="9"> *@
+@*                 <InputText id="Cpr nummer" @bind-Value="identity.CPRnumber"></InputText> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*         <br/> *@
+@*         <div id="cpr"> *@
+@*             <div align="center" aria-colspan="3"> Pin code:</div> *@
+@*             <div align="center" aria-colspan="9"> *@
+@*                 <InputText type="password" id="Kode pin" @bind-Value="identity.CPRpin"></InputText> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*         <br/> *@
+@* *@
+@*         <button type="submit">Login</button> *@
+@*     </EditForm> *@
+@* </div> *@
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+
+@code
+{
+    // private Identity identity = new();
+
+    private void HandleLoginAttempt()
+    {
+        Console.WriteLine("Login attempt");
+    }
+
+    private void InvalidCredentials()
+    {
+        Console.WriteLine("Invalid Credentials");
+    }
+}
+
+@* <SurveyPrompt Title="How is Blazor working for you?"/> *@

@@ -56,6 +56,7 @@ C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ref\Elec
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.pdb
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.genruntimeconfig.cache
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.csproj.CopyComplete
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\CastVote.cshtml.g.cs
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\appsettings.Development.json
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\appsettings.json
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\bin\Debug\net5.0\ElectMe WebClient.StaticWebAssets.xml

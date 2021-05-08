@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+NSx2MqwDe+IESemKa8zzMPmHGWyG/EK4UCySfDNlAdEGhYk6xnRLI4hUx7OZSwvg+vAXxU2g+4uNgrYC5D3Rg==",
+  "dgSpecHash": "GeDR9RbDR24fXoKz59UiFr4wa9TfXQFLgvC6ZYqIDWvR7iC9iqbTh4w2TIlDBaBA+D65iKoJiVim6A1JCEYHnA==",
   "success": true,
-  "projectFilePath": "D:\\ralup\\VIA\\SCP\\ElectMe\\ElectMe WebClient\\ElectMe WebClient.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\spiri\\RiderProjects\\ElectMe\\ElectMe WebClient\\ElectMe WebClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\spiri\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512"
+  ],
   "logs": []
 }

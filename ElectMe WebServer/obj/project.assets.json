@@ -189,30 +189,29 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Microsoft.OpenApi >= 1.2.3",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\raluc\\.nuget\\packages\\": {}
+    "C:\\Users\\spiri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ralup\\VIA\\SCP\\ElectMe\\ElectMe WebServer\\ElectMe WebServer.csproj",
+      "projectUniqueName": "C:\\Users\\spiri\\RiderProjects\\ElectMe\\ElectMe WebServer\\ElectMe WebServer.csproj",
       "projectName": "ElectMe WebServer",
-      "projectPath": "D:\\ralup\\VIA\\SCP\\ElectMe\\ElectMe WebServer\\ElectMe WebServer.csproj",
-      "packagesPath": "C:\\Users\\raluc\\.nuget\\packages\\",
-      "outputPath": "D:\\ralup\\VIA\\SCP\\ElectMe\\ElectMe WebServer\\obj\\",
+      "projectPath": "C:\\Users\\spiri\\RiderProjects\\ElectMe\\ElectMe WebServer\\ElectMe WebServer.csproj",
+      "packagesPath": "C:\\Users\\spiri\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\spiri\\RiderProjects\\ElectMe\\ElectMe WebServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\raluc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\spiri\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -231,6 +230,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Microsoft.OpenApi": {
+            "target": "Package",
+            "version": "[1.2.3, )"
+          },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[5.6.3, )"
@@ -254,7 +257,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

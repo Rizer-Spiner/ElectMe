@@ -42,7 +42,6 @@ namespace ElectMe_WebServer.ECIES.util
                 byte[] messageContent = new byte[message.Length - storedHash.Length];
                 for (int i = 0; i < message.Length - storedHash.Length; i++)
                 {
-                    // messageContent[message.Length - storedHash.Length] = message[i];
                     messageContent[i] = message[i + storedHash.Length];
                 }
 

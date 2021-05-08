@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿
 using System.Security.Cryptography;
 
 namespace ElectMe_WebServer.ECIES.util
@@ -10,14 +10,22 @@ namespace ElectMe_WebServer.ECIES.util
 
         public AesEncryptionProvider(byte[] IV)
         {
-            byte[] IV16 = new byte[16];
-            for (int i = 0; i < IV16.Length; i++)
-            {
-                IV16[i] = IV[i];
-            }
             
-            Encryptor = new Encryptor(IV16);
-            Decryptor = new Decryptor(IV16);
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] key = sha256Hash.ComputeHash(IV);
+
+                byte[] IV16 = new byte[16];
+                for (int i = 0; i < IV16.Length; i++)
+                {
+                    IV16[i] = key[i];
+                }
+            
+                Encryptor = new Encryptor(IV16);
+                Decryptor = new Decryptor(IV16);
+            }
+
+           
         }
 
 

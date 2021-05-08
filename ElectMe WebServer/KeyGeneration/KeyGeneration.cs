@@ -1,9 +1,8 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Threading.Tasks;
 
 namespace ElectMe_WebServer.KeyGeneration
 {
@@ -16,6 +15,22 @@ namespace ElectMe_WebServer.KeyGeneration
 
             int index = 0;
             EllipticCurvePoint initial = curve.G;
+            while (bits[index] == 0)
+            {
+                initial = PointDoubling.doublePoint(curve, curve.G);
+                index++;
+            }
+
+            return getResult(bits, index + 1, curve, initial);
+        }
+
+        public static EllipticCurvePoint calculateSharedKey(BigInteger ownPrk, EllipticCurvePoint otherPuK, EllipticCurve curve)
+        {
+            if (ownPrk == 0) return new EllipticCurvePoint { x = 0, y = 0 };
+            int[] bits = getBits(ownPrk);
+            
+            int index = 0;
+            EllipticCurvePoint initial = otherPuK;
             while (bits[index] == 0)
             {
                 initial = PointDoubling.doublePoint(curve, curve.G);
