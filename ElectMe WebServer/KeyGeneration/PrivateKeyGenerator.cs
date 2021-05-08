@@ -14,8 +14,7 @@ namespace ElectMe_WebServer.KeyGeneration
             byte[] randomBytes = new byte[33];
             rngCryptoServiceProvider.GetBytes(randomBytes, 0, 32);
             randomBytes[32] = 0;
-            BigInteger result = new BigInteger(randomBytes);
-            return result;
+            return new BigInteger(randomBytes);
         }
     }
 }
