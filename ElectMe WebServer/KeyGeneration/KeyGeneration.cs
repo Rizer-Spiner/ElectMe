@@ -9,16 +9,16 @@ namespace ElectMe_WebServer.KeyGeneration
 {
     public class KeyGeneration
     {
-        public static EllipticCurvePoint calculatePublicKey(BigInteger prk, EllipticCurve curve)
+        public static EllipticCurvePoint calculatePublicKey(BigInteger prk, EllipticCurvePoint basePoint, EllipticCurve curve)
         {
             if (prk == 0) return new EllipticCurvePoint { x = 0, y = 0 };
             int[] bits = getBits(prk);
 
             int index = 0;
-            EllipticCurvePoint initial = curve.G;
+            EllipticCurvePoint initial = basePoint;
             while (bits[index] == 0)
             {
-                initial = PointDoubling.doublePoint(curve, curve.G);
+                initial = PointDoubling.doublePoint(curve, initial);
                 index++;
             }
 
