@@ -10,7 +10,7 @@ namespace VoteServer.VoteDatabase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // modelBuilder.Entity<Vote>().Navigation().
+            
         }
     }
 }

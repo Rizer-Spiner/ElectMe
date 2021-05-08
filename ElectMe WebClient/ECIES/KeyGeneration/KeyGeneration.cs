@@ -24,21 +24,7 @@ namespace ElectMe_WebServer.KeyGeneration
             return getResult(bits, index + 1, curve, initial);
         }
 
-        public static EllipticCurvePoint calculateSharedKey(BigInteger ownPrk, EllipticCurvePoint otherPuK, EllipticCurve curve)
-        {
-            if (ownPrk == 0) return new EllipticCurvePoint { x = 0, y = 0 };
-            int[] bits = getBits(ownPrk);
-            
-            int index = 0;
-            EllipticCurvePoint initial = otherPuK;
-            while (bits[index] == 0)
-            {
-                initial = PointDoubling.doublePoint(curve, curve.G);
-                index++;
-            }
-
-            return getResult(bits, index + 1, curve, initial);
-        }
+     
 
         private static int[] getBits(BigInteger n)
         {

@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using ElectMe_WebServer.ECIES.util;
+using ElectMe_WebServer.KeyGeneration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -63,6 +66,86 @@ namespace ElectMe_WebServer
             // {
             //     Console.WriteLine("Tag is incorrect!");
             // }
+
+            BigInteger clientPrK = PrivateKeyGenerator.generatePrivateKey();
+            BigInteger serverPrk = PrivateKeyGenerator.generatePrivateKey();
+
+            EllipticCurve ellipticCurve = new EllipticCurve
+            {
+                a = 4,
+                b = 3,
+                G = new EllipticCurvePoint {x = 234, y = 121},
+                n = 180181,
+                h = 0,
+                p = 0
+            };
+
+            EllipticCurvePoint clientPuK = KeyGeneration.KeyGeneration.calculatePublicKey(clientPrK,
+                ellipticCurve.G, ellipticCurve);
+            EllipticCurvePoint serverPuK = KeyGeneration.KeyGeneration.calculatePublicKey(serverPrk,
+                ellipticCurve.G, ellipticCurve);
+
+            EllipticCurvePoint sharedKeyPointClient =
+                KeyGeneration.KeyGeneration.calculatePublicKey(clientPrK, serverPuK, ellipticCurve);
+            EllipticCurvePoint sharedKeyPointServer =
+                KeyGeneration.KeyGeneration.calculatePublicKey(serverPrk, clientPuK, ellipticCurve);
+
+            if (sharedKeyPointClient.x.Equals(sharedKeyPointServer.x) &&
+                sharedKeyPointClient.y.Equals(sharedKeyPointServer.y))
+            {
+                Console.WriteLine(sharedKeyPointClient.x);
+                Console.WriteLine(sharedKeyPointClient.y);
+                Console.WriteLine("Equals");
+
+
+                BigInteger sharedKey = sharedKeyPointClient.x;
+                byte[] sharedKeyBytes = Encoding.ASCII.GetBytes(sharedKey.ToString());
+                Console.WriteLine(sharedKeyBytes.Length);
+
+                KDF clientKDF = new KDF();
+                KDF serverKDF = new KDF();
+
+                AesEncryptionProvider clientAesEncryptionProvider = new AesEncryptionProvider(sharedKeyBytes);
+                AesEncryptionProvider serverAesEncryptionProvider = new AesEncryptionProvider(sharedKeyBytes);
+
+                Console.WriteLine("client sends a message:");
+                String messageFromClient = "I am a message from the client";
+                byte[] encryptedMessageFromClient = clientAesEncryptionProvider.Encrypt(messageFromClient,
+                    clientKDF.DeriveKey(sharedKeyBytes, KDF.DefaultRoundsEnc));
+                byte[] signedMessage = MAC.GetTag(encryptedMessageFromClient,
+                    clientKDF.DeriveKey(sharedKeyBytes, KDF.DefaultRoundsMac));
+                Console.WriteLine(Encoding.ASCII.GetString(signedMessage));
+
+                Console.WriteLine("server receives the message");
+                Console.WriteLine("server verifies signature");
+                if (MAC.VerifyTag(signedMessage, serverKDF.DeriveKey(sharedKeyBytes, KDF.DefaultRoundsMac)))
+                {
+                    Console.WriteLine("Signature verified");
+                    Console.WriteLine("server decrypts message: ");
+                    byte[] encryptedMessage = MAC.extractEncryptedContent(signedMessage,
+                        serverKDF.DeriveKey(sharedKeyBytes, KDF.DefaultRoundsMac));
+
+                    string decryptedMessageFromClient = serverAesEncryptionProvider.Decrypt(encryptedMessage,
+                        clientKDF.DeriveKey(sharedKeyBytes, KDF.DefaultRoundsEnc));
+
+                    Console.WriteLine(decryptedMessageFromClient);
+                }
+                else
+                {
+                    Console.WriteLine("Signature does not match. Aborted!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("X:");
+                Console.WriteLine(sharedKeyPointClient.x);
+                Console.WriteLine(sharedKeyPointServer.x);
+                Console.WriteLine("Y:");
+                Console.WriteLine(sharedKeyPointClient.y);
+                Console.WriteLine(sharedKeyPointServer.y);
+                Console.WriteLine("Not equals");
+            }
+
 
             CreateHostBuilder(args).Build().Run();
         }

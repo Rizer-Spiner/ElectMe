@@ -5,7 +5,7 @@ namespace ElectMe_WebServer.ECIES.util
 {
     public class MAC
     {
-        public byte[] GetTag(byte[] encryptedMessage, byte[] Kmac)
+        public static byte[] GetTag(byte[] encryptedMessage, byte[] Kmac)
         {
             using (var hashMac256 = new HMACSHA256(Kmac))
             {
@@ -28,7 +28,7 @@ namespace ElectMe_WebServer.ECIES.util
         }
 
 
-        public bool VerifyTag(byte[] message, byte[] KMac)
+        public static bool VerifyTag(byte[] message, byte[] KMac)
         {
             using (HMACSHA256 hmac = new HMACSHA256(KMac))
             {
@@ -57,6 +57,27 @@ namespace ElectMe_WebServer.ECIES.util
             }
 
             return true;
+        }
+
+        public static byte[] extractEncryptedContent(byte[] signedMessage, byte[] KMac)
+        {
+            using (HMACSHA256 hmac = new HMACSHA256(KMac))
+            {
+                byte[] storedHash = new byte[hmac.HashSize / 8];
+
+                for (int i = 0; i < storedHash.Length; i++)
+                {
+                    storedHash[i] = signedMessage[i];
+                }
+
+                byte[] messageContent = new byte[signedMessage.Length - storedHash.Length];
+                for (int i = 0; i < signedMessage.Length - storedHash.Length; i++)
+                {
+                    messageContent[i] = signedMessage[i + storedHash.Length];
+                }
+
+                return messageContent;
+            }
         }
     }
 }
