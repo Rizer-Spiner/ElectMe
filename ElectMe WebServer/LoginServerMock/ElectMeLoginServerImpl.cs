@@ -1,4 +1,4 @@
-﻿using ElectMe_WebServer.KeyGeneration;
+﻿using ElectMe_WebServer.ECIES.KeyGeneration;
 
 namespace ElectMe_WebServer.LoginServerMock
 {

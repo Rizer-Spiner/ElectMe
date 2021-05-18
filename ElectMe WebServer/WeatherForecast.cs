@@ -2,7 +2,7 @@ using System;
 
 namespace ElectMe_WebServer
 {
-    public class WeatherForecast
+    public class eatherForecast
     {
         public DateTime Date { get; set; }
 

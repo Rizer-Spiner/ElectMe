@@ -1,12 +1,14 @@
 ﻿
 using System.Numerics;
+using ElectMe_WebServer.ECIES.util;
+using Newtonsoft.Json;
 
-
-namespace ElectMe_WebServer.KeyGeneration
+namespace ElectMe_WebServer.ECIES.KeyGeneration
 {
+    
     public class EllipticCurvePoint
     {
-        public BigInteger x { get; set; }
-        public BigInteger y { get; set; }
+        [JsonConverter(typeof(BigIntegerConverter))]public BigInteger x { get; set; }
+        [JsonConverter(typeof(BigIntegerConverter))]public BigInteger y { get; set; }
     }
 }

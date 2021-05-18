@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
+﻿using System.Numerics;
+using ElectMe_WebServer.ECIES.util;
+using Newtonsoft.Json;
 
-namespace ElectMe_WebServer.KeyGeneration
+namespace ElectMe_WebServer.ECIES.KeyGeneration
 {
+   
     public class EllipticCurve
     {
-        public BigInteger a { get; set; }
-        public BigInteger b { get; set; }
+     
+        [JsonConverter(typeof(BigIntegerConverter))]public BigInteger a { get; set; }
+        [JsonConverter(typeof(BigIntegerConverter))]public BigInteger b { get; set; }
         public EllipticCurvePoint G { get; set; }
-        public BigInteger p { get; set; }
-        public BigInteger n { get; set; }
-        public BigInteger h { get; set; }
+        [JsonConverter(typeof(BigIntegerConverter))]public BigInteger p { get; set; }
+        [JsonConverter(typeof(BigIntegerConverter))]public BigInteger n { get; set; }
+        [JsonConverter(typeof(BigIntegerConverter))] public BigInteger h { get; set; }
     }
 }

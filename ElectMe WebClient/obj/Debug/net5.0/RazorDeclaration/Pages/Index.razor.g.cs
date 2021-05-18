@@ -84,7 +84,84 @@ using ElectMe_WebClient.Shared;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.Data;
+using ElectMe_WebClient.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using System.Net.Http.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using System.Text;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebClient.ECIES;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebClient.ECIES.KeyGeneration;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebClient.ECIES.util;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebServer.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using Newtonsoft.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using System.Net.Http.Headers;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using System.IO;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 #line default
 #line hidden
@@ -98,13 +175,103 @@ using ElectMe_WebClient.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 36 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+#line 51 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
  
-    // private Identity identity = new();
+    private Identity identity = new();
 
     private void HandleLoginAttempt()
     {
-        Console.WriteLine("Login attempt");
+        HttpClient httpClient = new HttpClient();
+        httpClient.BaseAddress = new Uri("https://localhost:5001");
+        httpClient.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("text/json"));
+    // Task<CA> certificateTask = Http.GetFromJsonAsync<CA>("https://localhost:5001/connect");
+    //
+    // while (!certificateTask.IsCompleted)
+    // {
+    //     Console.WriteLine("Waiting for CA....");
+    // }
+    //
+    // Console.WriteLine(certificateTask.Status.ToString());
+
+    // CA certificate = certificateTask.Result;
+
+        HttpResponseMessage responseMessage = httpClient.GetAsync("/connect").Result;
+
+
+    // Parse the response body.
+
+
+        var json = responseMessage.Content.ReadAsStringAsync().Result;
+        
+        JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+        jsonSerializerSettings.Converters.Add(new BigIntegerConverter());
+        var initial = JsonConvert.DeserializeObject<InitialPackage>(json, jsonSerializerSettings);
+        Console.WriteLine(initial.EllipticCurve.a);
+
+        
+
+    // if (verifyCA(certificate))
+    // {
+    //     ClientVariables.Puk = KeyGeneration.calculatePublicKey(ClientVariables.Prk, certificate.EllipticCurve.G, certificate.EllipticCurve);
+    //     EllipticCurvePoint shareKey = KeyGeneration.calculatePublicKey(ClientVariables.Prk, certificate.ServerPuk, certificate.EllipticCurve);
+    //
+    //     ClientVariables.Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(shareKey.x.ToString()), KDF.DefaultRoundsEnc);
+    //     ClientVariables.KMac = KDF.DeriveKey(Encoding.ASCII.GetBytes(shareKey.x.ToString()), KDF.DefaultRoundsMac);
+    //     
+    //     AesEncryptionProvider aes = new AesEncryptionProvider(Encoding.ASCII.GetBytes(shareKey.x.ToString()));
+    //     byte[] encryptedCredentials = aes.Encrypt(JsonConvert.SerializeObject(identity), certificate.NiosKey);
+    //
+    //     LoginForm loginForm = new()
+    //     {
+    //         ClientPuk = ClientVariables.Puk,
+    //         EncryptedCredentials = Encoding.ASCII.GetString(encryptedCredentials)
+    //     };
+    //
+    //     string signedLoginForm = signLoginForm(loginForm, certificate.ServerPuk);
+    //     
+    //     StringContent httpContent = new StringContent(signedLoginForm, Encoding.UTF8, "application/json");
+    //
+    //
+    //     Task<HttpResponseMessage> loginResultTask =  Http.PostAsync("https://localhost:5001/ElectMe/login", httpContent);
+    //
+    //     while (!loginResultTask.IsCompleted)
+    //     {
+    //         Console.WriteLine("Waiting for Login response...");
+    //     }
+    //
+    //     string loginResult = loginResultTask.Result.Content.ToString();
+    //
+    //     if (MAC.VerifyTag(Encoding.ASCII.GetBytes(loginResult), ClientVariables.KMac))
+    //     {
+    //         byte[] encryptedMessage = MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(loginResult), ClientVariables.KMac);
+    //         string jsonDecrypted = aes.Decrypt(encryptedMessage, ClientVariables.Kenc);
+    //
+    //         LoginResult result = JsonConvert.DeserializeObject<LoginResult>(jsonDecrypted);
+    //
+    //         if (result.Status.Equals(200))
+    //         {
+    //             NavManager.NavigateTo("/vote");
+    //         }
+    //         else
+    //         {
+    //             NavManager.NavigateTo("/error");
+    //         }
+    //
+    //     }
+    //     
+    // }
+    }
+
+    private string signLoginForm(LoginForm loginForm, EllipticCurvePoint serverPuk)
+    {
+        return JsonConvert.SerializeObject(loginForm);
+    }
+
+    private bool verifyCA(InitialPackage certificate)
+    {
+        byte[] InitialPackagesignature = certificate.CertificateSignature;
+        return true;
     }
 
     private void InvalidCredentials()
@@ -115,6 +282,8 @@ using ElectMe_WebClient.Data;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }
 #pragma warning restore 1591

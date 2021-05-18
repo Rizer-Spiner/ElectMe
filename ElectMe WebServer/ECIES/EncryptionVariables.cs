@@ -1,7 +1,6 @@
 ﻿using System.Numerics;
-using System.Runtime.ConstrainedExecution;
 using System.Text;
-using ElectMe_WebServer.KeyGeneration;
+using ElectMe_WebServer.ECIES.KeyGeneration;
 
 namespace ElectMe_WebServer.ECIES
 {
@@ -23,14 +22,15 @@ namespace ElectMe_WebServer.ECIES
             PrkcForClient,
             EllipticCurveForClient.G, EllipticCurveForClient);
 
-        public static readonly CA certificate = new()
+        public static readonly InitialPackage certificate = new()
         {
             EllipticCurve = EllipticCurveForClient,
             ServerPuk = PukForClients,
-            CertificateSignature = Encoding.ASCII.GetBytes("Certificate Authority signature")
+            CertificateSignature = Encoding.ASCII.GetBytes("Certificate Authority signature"),
+            NiosKey = Encoding.ASCII.GetBytes("NIOS encryption/decryption Key")
         };
 
-        public static readonly byte[] NIOSKey = Encoding.ASCII.GetBytes("NIOS encryption/decryptionKey");
+        // public static readonly byte[] NIOSKey = Encoding.ASCII.GetBytes("NIOS encryption/decryption Key");
     }
 
   

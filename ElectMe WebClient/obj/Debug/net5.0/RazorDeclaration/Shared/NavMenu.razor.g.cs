@@ -90,7 +90,7 @@ using ElectMe_WebClient.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Shared\NavMenu.razor"
+#line 18 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

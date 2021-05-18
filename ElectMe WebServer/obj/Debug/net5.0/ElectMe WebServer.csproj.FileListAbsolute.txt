@@ -56,3 +56,4 @@ D:\ralup\VIA\SCP\ElectMe\ElectMe WebServer\obj\Debug\net5.0\scopedcss\bundle\Ele
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.RazorTargetAssemblyInfo.cache
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.csproj.CopyComplete
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.genruntimeconfig.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebServer\bin\Debug\net5.0\Newtonsoft.Json.dll

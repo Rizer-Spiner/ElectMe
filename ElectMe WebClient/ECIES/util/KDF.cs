@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-
-namespace ElectMe_WebServer.ECIES.util
+namespace ElectMe_WebClient.ECIES.util
 {
     public class KDF
     {
         public static readonly int DefaultRoundsEnc = 2;
         public static readonly int DefaultRoundsMac = 3;
 
-        public byte[] DeriveKey(byte[] sharedKey, int rounds)
+        public static byte[] DeriveKey(byte[] sharedKey, int rounds)
         {
             if (sharedKey == null || sharedKey.Length <= 0)
                 throw new ArgumentNullException("Key");

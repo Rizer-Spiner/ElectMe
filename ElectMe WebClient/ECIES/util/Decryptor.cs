@@ -2,7 +2,7 @@
 using System.IO;
 using System.Security.Cryptography;
 
-namespace ElectMe_WebServer.ECIES.util
+namespace ElectMe_WebClient.ECIES.util
 {
     public class Decryptor
     {

@@ -1,0 +1,29 @@
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\appsettings.json
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\ElectMe Server2.exe
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\ElectMe Server2.deps.json
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\ElectMe Server2.runtimeconfig.json
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\ElectMe Server2.runtimeconfig.dev.json
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\ElectMe Server2.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\ref\ElectMe Server2.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\ElectMe Server2.pdb
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.csprojAssemblyReference.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.AssemblyInfoInputs.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.AssemblyInfo.cs
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.csproj.CoreCompileInputs.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\staticwebassets\ElectMe Server2.StaticWebAssets.Manifest.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\staticwebassets\ElectMe Server2.StaticWebAssets.xml
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\scopedcss\bundle\ElectMe Server2.styles.css
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.RazorTargetAssemblyInfo.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.csproj.CopyComplete
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ref\ElectMe Server2.dll
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.pdb
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe Server2\obj\Debug\net5.0\ElectMe Server2.genruntimeconfig.cache

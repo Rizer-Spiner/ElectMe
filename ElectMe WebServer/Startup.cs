@@ -29,7 +29,7 @@ namespace ElectMe_WebServer
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "ElectMe_WebServer", Version = "v1"});
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "ElectMe_WebServer", Version = "v3"});
             });
         }
 
@@ -42,7 +42,7 @@ namespace ElectMe_WebServer
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ElectMe_WebServer v1"));
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -1,62 +1,72 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using ElectMe_WebServer.ECIES;
+using ElectMe_WebServer.ECIES.KeyGeneration;
 using ElectMe_WebServer.ECIES.util;
-using ElectMe_WebServer.KeyGeneration;
 using ElectMe_WebServer.LoginServerMock;
 using ElectMe_WebServer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ElectMe_WebServer.Controllers
 {
     [ApiController]
-    [Route("[electMe]")]
-    public class ElectMeController
+    [Route("[controller]")]
+    public class ElectMeController : ControllerBase
     {
         private readonly ILogger<ElectMeController> _logger;
         private readonly ElectMeLoginServer _login;
         private Dictionary<string, EllipticCurvePoint> _subscribers;
-      
 
-        public ElectMeController(ILogger<ElectMeController> logger, ElectMeLoginServer login)
+
+        public ElectMeController(ILogger<ElectMeController> logger)
         {
             _logger = logger;
-            _login = login;
+            _login = new ElectMeLoginServerImpl();
             _subscribers = new Dictionary<string, EllipticCurvePoint>();
         }
 
 
         [HttpGet]
+        [Route("/connect")]
         [Consumes("application/json")]
-        public CA getStartEncryptionVariable()
+        public string getStartEncryptionVariable()
         {
-            return EncryptionVariables.certificate;
+            InitialPackage certificate = EncryptionVariables.certificate;
+            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.Formatting = Formatting.Indented;
+            jsonSerializerSettings.Converters.Add(new BigIntegerConverter());
+            string s = JsonConvert.SerializeObject(certificate, jsonSerializerSettings);
+            return s;
+
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("/login")]
         public string login([FromBody] string message)
         {
             if (verifySignature(Encoding.ASCII.GetBytes(message),
                 Encoding.ASCII.GetBytes(EncryptionVariables.PrkcForClient.ToString())))
             {
-                message = getEncryptedContent(message);
+                message = getContent(message);
                 LoginForm loginForm = JsonConvert.DeserializeObject<LoginForm>(message);
 
                 if (loginForm != null)
                 {
-                    EllipticCurvePoint sharedKey = KeyGeneration.KeyGeneration.calculatePublicKey(
+                    EllipticCurvePoint sharedKey = KeyGeneration.calculatePublicKey(
                         EncryptionVariables.PrkcForClient, loginForm.ClientPuk,
                         EncryptionVariables.EllipticCurveForClient);
                     byte[] sharedKeyBytesX = Encoding.ASCII.GetBytes(sharedKey.x.ToString());
 
                     AesEncryptionProvider aes = new AesEncryptionProvider(sharedKeyBytesX);
-                    byte[] Kenc = new KDF().DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsEnc);
-                    byte[] Kmac = new KDF().DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsMac);
+                    byte[] Kenc =  KDF.DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsEnc);
+                    byte[] Kmac =  KDF.DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsMac);
 
                     NIOSLoginResult NIOSLogin = _login.login(loginForm.EncryptedCredentials);
                     LoginResult result;
@@ -89,25 +99,23 @@ namespace ElectMe_WebServer.Controllers
                 }
             }
 
-            return "";
+            return "Message is invalid";
         }
 
-      
-
-        [HttpGet]
+        [HttpPost]
         [Route("/logout/{deviceToken}")]
         public string logout([FromBody] string message, string deviceToken)
         {
             EllipticCurvePoint clientPuk = getPuK(deviceToken);
 
-            EllipticCurvePoint sharedKey = KeyGeneration.KeyGeneration.calculatePublicKey(
+            EllipticCurvePoint sharedKey = KeyGeneration.calculatePublicKey(
                 EncryptionVariables.PrkcForClient, clientPuk,
                 EncryptionVariables.EllipticCurveForClient);
             byte[] sharedKeyBytesX = Encoding.ASCII.GetBytes(sharedKey.x.ToString());
 
             AesEncryptionProvider aes = new AesEncryptionProvider(sharedKeyBytesX);
-            byte[] Kenc = new KDF().DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsEnc);
-            byte[] Kmac = new KDF().DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsMac);
+            byte[] Kenc = KDF.DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsEnc);
+            byte[] Kmac = KDF.DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsMac);
 
             if (MAC.VerifyTag(Encoding.ASCII.GetBytes(message), Kmac))
             {
@@ -131,24 +139,24 @@ namespace ElectMe_WebServer.Controllers
                 return Encoding.ASCII.GetString(signedData);
             }
 
-            return "";
+            return "Message is invalid";
         }
 
 
         [HttpPost]
-        [Route("/vote/{deviceId}")]
+        [Route("/vote/{deviceToken}")]
         public string vote([FromBody] string message, string deviceToken)
         {
             EllipticCurvePoint clientPuk = getPuK(deviceToken);
 
-            EllipticCurvePoint sharedKey = KeyGeneration.KeyGeneration.calculatePublicKey(
+            EllipticCurvePoint sharedKey = KeyGeneration.calculatePublicKey(
                 EncryptionVariables.PrkcForClient, clientPuk,
                 EncryptionVariables.EllipticCurveForClient);
             byte[] sharedKeyBytesX = Encoding.ASCII.GetBytes(sharedKey.x.ToString());
 
             AesEncryptionProvider aes = new AesEncryptionProvider(sharedKeyBytesX);
-            byte[] Kenc = new KDF().DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsEnc);
-            byte[] Kmac = new KDF().DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsMac);
+            byte[] Kenc =  KDF.DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsEnc);
+            byte[] Kmac =  KDF.DeriveKey(sharedKeyBytesX, KDF.DefaultRoundsMac);
 
             if (MAC.VerifyTag(Encoding.ASCII.GetBytes(message), Kmac))
             {
@@ -166,7 +174,7 @@ namespace ElectMe_WebServer.Controllers
                 return Encoding.ASCII.GetString(signedData);
             }
 
-            return "";
+            return "Message is invalid";
         }
 
         private VoteResult placeVote(Vote vote1)
@@ -185,12 +193,12 @@ namespace ElectMe_WebServer.Controllers
             _subscribers.Add(deviceToken, loginFormClientPuk);
         }
 
-        private string? getNewDeviceToken()
+        private string getNewDeviceToken()
         {
             return PrivateKeyGenerator.generatePrivateKey().ToString();
         }
 
-        private string getEncryptedContent(string message)
+        private string getContent(string message)
         {
             return message;
         }
@@ -199,7 +207,7 @@ namespace ElectMe_WebServer.Controllers
         {
             return true;
         }
-        
+
         private List<string> getElectionChoices()
         {
             List<string> list = new List<string>();

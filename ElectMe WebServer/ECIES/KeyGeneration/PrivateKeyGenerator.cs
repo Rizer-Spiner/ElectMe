@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Security.Cryptography;
-using System.Text;
 
-namespace ElectMe_WebServer.KeyGeneration
+namespace ElectMe_WebServer.ECIES.KeyGeneration
 {
     class PrivateKeyGenerator
     {
