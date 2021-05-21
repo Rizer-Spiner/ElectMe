@@ -1,6 +1,7 @@
-﻿using System.Numerics;
-using System.Text;
+﻿using ElectMe_WebServer.ECIES.Common.ECC;
 using ElectMe_WebServer.ECIES.KeyGeneration;
+using System.Numerics;
+using System.Text;
 
 namespace ElectMe_WebServer.ECIES
 {
@@ -20,7 +21,7 @@ namespace ElectMe_WebServer.ECIES
 
         public static readonly EllipticCurvePoint PukForClients = KeyGeneration.KeyGeneration.calculatePublicKey(
             PrkcForClient,
-            EllipticCurveForClient.G, EllipticCurveForClient);
+            EllipticCurveForClient);
 
         public static readonly InitialPackage certificate = new()
         {

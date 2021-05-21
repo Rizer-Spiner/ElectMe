@@ -57,3 +57,33 @@ D:\ralup\VIA\SCP\ElectMe\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.Ra
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.csproj.CopyComplete
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.genruntimeconfig.cache
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebServer\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\appsettings.Development.json
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\appsettings.json
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\ElectMe WebServer.exe
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\ElectMe WebServer.deps.json
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\ElectMe WebServer.runtimeconfig.json
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\ElectMe WebServer.runtimeconfig.dev.json
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\ElectMe WebServer.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\ref\ElectMe WebServer.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\ElectMe WebServer.pdb
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\Microsoft.OpenApi.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.csprojAssemblyReference.cache
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.GeneratedMSBuildEditorConfig.editorconfig
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.AssemblyInfoInputs.cache
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.AssemblyInfo.cs
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.csproj.CoreCompileInputs.cache
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.MvcApplicationPartsAssemblyInfo.cs
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.MvcApplicationPartsAssemblyInfo.cache
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\staticwebassets\ElectMe WebServer.StaticWebAssets.Manifest.cache
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\staticwebassets\ElectMe WebServer.StaticWebAssets.xml
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\scopedcss\bundle\ElectMe WebServer.styles.css
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.RazorTargetAssemblyInfo.cache
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.csproj.CopyComplete
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ref\ElectMe WebServer.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.pdb
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.genruntimeconfig.cache

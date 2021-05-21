@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ElectMe_WebServer.ECIES;
+using ElectMe_WebServer.ECIES.Common.ECC;
 using ElectMe_WebServer.ECIES.KeyGeneration;
 using ElectMe_WebServer.ECIES.util;
 using ElectMe_WebServer.LoginServerMock;
@@ -59,7 +60,7 @@ namespace ElectMe_WebServer.Controllers
 
                 if (loginForm != null)
                 {
-                    EllipticCurvePoint sharedKey = KeyGeneration.calculatePublicKey(
+                    EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
                         EncryptionVariables.PrkcForClient, loginForm.ClientPuk,
                         EncryptionVariables.EllipticCurveForClient);
                     byte[] sharedKeyBytesX = Encoding.ASCII.GetBytes(sharedKey.x.ToString());
@@ -108,7 +109,7 @@ namespace ElectMe_WebServer.Controllers
         {
             EllipticCurvePoint clientPuk = getPuK(deviceToken);
 
-            EllipticCurvePoint sharedKey = KeyGeneration.calculatePublicKey(
+            EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
                 EncryptionVariables.PrkcForClient, clientPuk,
                 EncryptionVariables.EllipticCurveForClient);
             byte[] sharedKeyBytesX = Encoding.ASCII.GetBytes(sharedKey.x.ToString());
@@ -149,7 +150,7 @@ namespace ElectMe_WebServer.Controllers
         {
             EllipticCurvePoint clientPuk = getPuK(deviceToken);
 
-            EllipticCurvePoint sharedKey = KeyGeneration.calculatePublicKey(
+            EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
                 EncryptionVariables.PrkcForClient, clientPuk,
                 EncryptionVariables.EllipticCurveForClient);
             byte[] sharedKeyBytesX = Encoding.ASCII.GetBytes(sharedKey.x.ToString());

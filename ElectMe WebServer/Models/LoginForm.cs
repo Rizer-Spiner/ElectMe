@@ -1,4 +1,4 @@
-﻿using ElectMe_WebServer.ECIES.KeyGeneration;
+﻿using ElectMe_WebServer.ECIES.Common.ECC;
 
 namespace ElectMe_WebServer.Models
 {

@@ -1,4 +1,4 @@
-﻿using ElectMe_WebServer.ECIES.KeyGeneration;
+﻿using ElectMe_WebServer.ECIES.Common.ECC;
 using Newtonsoft.Json;
 
 namespace ElectMe_WebServer.ECIES
