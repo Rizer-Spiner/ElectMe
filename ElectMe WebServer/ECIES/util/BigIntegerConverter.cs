@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Numerics;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ElectMe_WebServer.ECIES.util
 {
     public class BigIntegerConverter : JsonConverter<BigInteger>
     {
-        public override void WriteJson(JsonWriter writer, BigInteger value, JsonSerializer serializer)
+        public override BigInteger Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            writer.WriteRawValue("\""+value.ToString()+"\"");
-              // writer.WriteRawValue(value.ToString());
-        }
-
-        public override BigInteger ReadJson(JsonReader reader, Type objectType, BigInteger existingValue,
-            bool hasExistingValue,
-            JsonSerializer serializer)
-        {
-            String s = reader.ReadAsString();
+            string s = reader.GetString();
             BigInteger big = BigInteger.Parse(s);
             return big;
+        }
+
+        public override void Write(Utf8JsonWriter writer, BigInteger value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString());
         }
     }
 }

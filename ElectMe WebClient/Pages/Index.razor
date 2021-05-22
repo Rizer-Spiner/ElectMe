@@ -1,17 +1,15 @@
 ﻿@page "/"
 @using ElectMe_WebClient.Models
 
-@using System.Net.Http.Json
-@using System.Text
+
 @using ElectMe_WebClient.ECIES
 @using ElectMe_WebClient.ECIES.Common.ECC
-@using ElectMe_WebClient.ECIES.util
+
 @using ElectMe_WebServer.Models
-@using Newtonsoft.Json
 @using System.Net.Http.Headers
 @using System.Text.Json
-@using System.IO
-@using JsonSerializer = Newtonsoft.Json.JsonSerializer
+@using ElectMe_WebClient.ECIES.util
+
 
 
 @inject HttpClient Http
@@ -56,17 +54,7 @@ Are you ready to vote?
         HttpClient httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri("https://localhost:5001");
         httpClient.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("text/json"));
-    // Task<CA> certificateTask = Http.GetFromJsonAsync<CA>("https://localhost:5001/connect");
-    //
-    // while (!certificateTask.IsCompleted)
-    // {
-    //     Console.WriteLine("Waiting for CA....");
-    // }
-    //
-    // Console.WriteLine(certificateTask.Status.ToString());
-
-    // CA certificate = certificateTask.Result;
+            new MediaTypeWithQualityHeaderValue("text/plain"));
 
         HttpResponseMessage responseMessage = httpClient.GetAsync("/connect").Result;
 
@@ -75,11 +63,11 @@ Are you ready to vote?
 
 
         var json = responseMessage.Content.ReadAsStringAsync().Result;
-        
-        JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
-        jsonSerializerSettings.Converters.Add(new BigIntegerConverter());
-        var initial = JsonConvert.DeserializeObject<InitialPackage>(json, jsonSerializerSettings);
-        Console.WriteLine(initial.EllipticCurve.a);
+        Console.WriteLine(json);
+        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+        serializerOptions.Converters.Add(new BigIntegerConverter());
+        var initial = JsonSerializer.Deserialize<InitialPackage>(json, serializerOptions);
+        Console.WriteLine(initial.ToString());
 
         
 
@@ -137,7 +125,7 @@ Are you ready to vote?
 
     private string signLoginForm(LoginForm loginForm, EllipticCurvePoint serverPuk)
     {
-        return JsonConvert.SerializeObject(loginForm);
+        return JsonSerializer.Serialize(loginForm);
     }
 
     private bool verifyCA(InitialPackage certificate)

@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 using System.Text;
 using ElectMe_WebServer.ECIES;
@@ -7,12 +7,13 @@ using ElectMe_WebServer.ECIES.KeyGeneration;
 using ElectMe_WebServer.ECIES.util;
 using ElectMe_WebServer.LoginServerMock;
 using ElectMe_WebServer.Models;
-using Microsoft.AspNetCore.Authorization;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
+
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
+
 
 namespace ElectMe_WebServer.Controllers
 {
@@ -35,15 +36,23 @@ namespace ElectMe_WebServer.Controllers
 
         [HttpGet]
         [Route("/connect")]
-        [Consumes("application/json")]
         public string getStartEncryptionVariable()
         {
             InitialPackage certificate = EncryptionVariables.certificate;
-            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
-            jsonSerializerSettings.Formatting = Formatting.Indented;
-            jsonSerializerSettings.Converters.Add(new BigIntegerConverter());
-            string s = JsonConvert.SerializeObject(certificate, jsonSerializerSettings);
-            return s;
+            JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+            serializerOptions.Converters.Add(new BigIntegerConverter());
+
+            TestModel testModel = new TestModel
+            {
+                integer = 333,
+                message = "this is a messsage"
+            };
+            return JsonSerializer.Serialize(certificate, serializerOptions);
+            // JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+            // // jsonSerializerSettings.Formatting = Formatting.Indented;
+            // // jsonSerializerSettings.Converters.Add(new BigIntegerConverter());
+            // string s = JsonConvert.SerializeObject(new TestModel{integer = 456L, message="this is a message"}, jsonSerializerSettings);
+            // return s;
 
         }
 
@@ -56,7 +65,7 @@ namespace ElectMe_WebServer.Controllers
                 Encoding.ASCII.GetBytes(EncryptionVariables.PrkcForClient.ToString())))
             {
                 message = getContent(message);
-                LoginForm loginForm = JsonConvert.DeserializeObject<LoginForm>(message);
+                LoginForm loginForm = JsonSerializer.Deserialize<LoginForm>(message);
 
                 if (loginForm != null)
                 {
@@ -91,7 +100,7 @@ namespace ElectMe_WebServer.Controllers
                         };
                     }
 
-                    string resultJson = JsonConvert.SerializeObject(result);
+                    string resultJson = JsonSerializer.Serialize(result);
 
                     byte[] encryptedData = aes.Encrypt(resultJson, Kenc);
                     byte[] signedData = MAC.GetTag(encryptedData, Kmac);
@@ -132,7 +141,7 @@ namespace ElectMe_WebServer.Controllers
                     Status = NIOSlogout.Status
                 };
 
-                string resultJson = JsonConvert.SerializeObject(result);
+                string resultJson = JsonSerializer.Serialize(result);
 
                 byte[] encryptedData = aes.Encrypt(resultJson, Kenc);
                 byte[] signedData = MAC.GetTag(encryptedData, Kmac);
@@ -164,10 +173,10 @@ namespace ElectMe_WebServer.Controllers
                 byte[] encryptedVote = MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(message), Kmac);
                 string voteSerialized = aes.Decrypt(encryptedVote, Kenc);
 
-                Vote vote = JsonConvert.DeserializeObject<Vote>(voteSerialized);
+                Vote vote = JsonSerializer.Deserialize<Vote>(voteSerialized);
                 VoteResult result = placeVote(vote);
 
-                string resultJson = JsonConvert.SerializeObject(result);
+                string resultJson = JsonSerializer.Serialize(result);
 
                 byte[] encryptedData = aes.Encrypt(resultJson, Kenc);
                 byte[] signedData = MAC.GetTag(encryptedData, Kmac);

@@ -13,155 +13,120 @@ namespace ElectMe_WebClient.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 1 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 2 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 3 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 4 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 5 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 6 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 7 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 8 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 9 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using ElectMe_WebClient;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 10 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using ElectMe_WebClient.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 2 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using ElectMe_WebClient.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using System.Net.Http.Json;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using System.Text;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 6 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 5 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using ElectMe_WebClient.ECIES;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES.KeyGeneration;
+#line 6 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebClient.ECIES.Common.ECC;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES.util;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 9 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 8 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using ElectMe_WebServer.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using Newtonsoft.Json;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 9 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using System.Net.Http.Headers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 12 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 10 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using System.Text.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 13 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using System.IO;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 14 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+#line 11 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebClient.ECIES.util;
 
 #line default
 #line hidden
@@ -175,7 +140,7 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 51 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 49 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
  
     private Identity identity = new();
 
@@ -184,17 +149,7 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
         HttpClient httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri("https://localhost:5001");
         httpClient.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("text/json"));
-    // Task<CA> certificateTask = Http.GetFromJsonAsync<CA>("https://localhost:5001/connect");
-    //
-    // while (!certificateTask.IsCompleted)
-    // {
-    //     Console.WriteLine("Waiting for CA....");
-    // }
-    //
-    // Console.WriteLine(certificateTask.Status.ToString());
-
-    // CA certificate = certificateTask.Result;
+            new MediaTypeWithQualityHeaderValue("text/plain"));
 
         HttpResponseMessage responseMessage = httpClient.GetAsync("/connect").Result;
 
@@ -203,11 +158,11 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 
         var json = responseMessage.Content.ReadAsStringAsync().Result;
-        
-        JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
-        jsonSerializerSettings.Converters.Add(new BigIntegerConverter());
-        var initial = JsonConvert.DeserializeObject<InitialPackage>(json, jsonSerializerSettings);
-        Console.WriteLine(initial.EllipticCurve.a);
+        Console.WriteLine(json);
+        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+        serializerOptions.Converters.Add(new BigIntegerConverter());
+        var initial = JsonSerializer.Deserialize<InitialPackage>(json, serializerOptions);
+        Console.WriteLine(initial.ToString());
 
         
 
@@ -265,7 +220,7 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
     private string signLoginForm(LoginForm loginForm, EllipticCurvePoint serverPuk)
     {
-        return JsonConvert.SerializeObject(loginForm);
+        return JsonSerializer.Serialize(loginForm);
     }
 
     private bool verifyCA(InitialPackage certificate)

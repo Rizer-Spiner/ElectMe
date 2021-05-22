@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using ElectMe_WebClient.ECIES.Common.ECC;
 using ElectMe_WebClient.ECIES.KeyGeneration;
 
 namespace ElectMe_WebClient.ECIES
