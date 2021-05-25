@@ -112,7 +112,6 @@ D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.ge
 D:\ralup\VIA\SCP\ElectMe\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.csproj.CopyComplete
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\bin\Debug\net5.0\Microsoft.OpenApi.dll
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\bin\Debug\net5.0\Newtonsoft.Json.dll
-C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Vote.cshtml.g.cs
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\bin\Debug\net5.0\System.Net.Http.Formatting.dll
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\bin\Debug\net5.0\appsettings.Development.json
@@ -174,3 +173,5 @@ D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebCl
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ref\ElectMe WebClient.dll
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.pdb
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.genruntimeconfig.cache
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Pages\Vote.razor.g.cs
+C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Vote.razor.g.cs

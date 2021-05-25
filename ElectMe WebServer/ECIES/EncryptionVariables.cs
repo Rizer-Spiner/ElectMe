@@ -23,15 +23,14 @@ namespace ElectMe_WebServer.ECIES
             PrkcForClient,
             EllipticCurveForClient);
 
+        public static readonly byte[] CertificateAuthority = Encoding.ASCII.GetBytes("Certificate Authority signature");
+
         public static readonly InitialPackage certificate = new()
         {
             EllipticCurve = EllipticCurveForClient,
             ServerPuk = PukForClients,
-            CertificateSignature = Encoding.ASCII.GetBytes("Certificate Authority signature"),
             NiosKey = Encoding.ASCII.GetBytes("NIOS encryption/decryption Key")
         };
-
-        // public static readonly byte[] NIOSKey = Encoding.ASCII.GetBytes("NIOS encryption/decryption Key");
     }
 
   

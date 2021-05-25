@@ -8,14 +8,8 @@ namespace ElectMe_WebServer.ECIES
     {
         public EllipticCurve EllipticCurve { get; set; }
         public EllipticCurvePoint ServerPuk { get; set; }
-        public byte[] CertificateSignature { get; set; }
         public byte[] NiosKey { get; set; }
-
-
-        public override string ToString()
-        {
-            return EllipticCurve.a + " " + EllipticCurve.b;
-        }
+        
     }
     
 }

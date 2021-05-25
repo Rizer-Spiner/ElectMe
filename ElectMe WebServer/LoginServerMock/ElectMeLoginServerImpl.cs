@@ -4,7 +4,7 @@ namespace ElectMe_WebServer.LoginServerMock
 {
     public class ElectMeLoginServerImpl : ElectMeLoginServer
     {
-        public NIOSLoginResult login(string encryptedCredentials)
+        public NIOSLoginResult login(byte[] encryptedCredentials)
         {
             return new NIOSLoginResult
             {
@@ -13,7 +13,7 @@ namespace ElectMe_WebServer.LoginServerMock
             };
         }
 
-        public NIOSLoginResult logout(string token)
+        public NIOSLoginResult logout(byte[] token)
         {
             return new NIOSLoginResult
             {

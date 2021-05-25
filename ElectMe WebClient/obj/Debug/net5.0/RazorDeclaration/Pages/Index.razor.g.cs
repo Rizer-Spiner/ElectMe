@@ -90,36 +90,57 @@ using ElectMe_WebClient.Models;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebClient.HTTP;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using System.Security.Cryptography;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 5 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES;
+using System.Text;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES.Common.ECC;
+using System.Text.Json;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebClient.ECIES;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebServer.Models;
+using ElectMe_WebClient.ECIES.Common.ECC;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 9 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
-using System.Net.Http.Headers;
+using ElectMe_WebClient.ECIES.ECDSA;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 10 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
-using System.Text.Json;
+using ElectMe_WebClient.ECIES.KeyGeneration;
 
 #line default
 #line hidden
@@ -127,6 +148,13 @@ using System.Text.Json;
 #nullable restore
 #line 11 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using ElectMe_WebClient.ECIES.util;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
+using ElectMe_WebServer.Models;
 
 #line default
 #line hidden
@@ -142,103 +170,155 @@ using ElectMe_WebClient.ECIES.util;
 #nullable restore
 #line 49 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
  
+    
+    ///stuff the view should know
     private Identity identity = new();
-
-    private void HandleLoginAttempt()
-    {
-        HttpClient httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri("https://localhost:5001");
-        httpClient.DefaultRequestHeaders.Accept.Add(
-            new MediaTypeWithQualityHeaderValue("text/plain"));
-
-        HttpResponseMessage responseMessage = httpClient.GetAsync("/connect").Result;
-
-
-    // Parse the response body.
-
-
-        var json = responseMessage.Content.ReadAsStringAsync().Result;
-        Console.WriteLine(json);
-        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
-        serializerOptions.Converters.Add(new BigIntegerConverter());
-        var initial = JsonSerializer.Deserialize<InitialPackage>(json, serializerOptions);
-        Console.WriteLine(initial.ToString());
-
-        
-
-    // if (verifyCA(certificate))
-    // {
-    //     ClientVariables.Puk = KeyGeneration.calculatePublicKey(ClientVariables.Prk, certificate.EllipticCurve.G, certificate.EllipticCurve);
-    //     EllipticCurvePoint shareKey = KeyGeneration.calculatePublicKey(ClientVariables.Prk, certificate.ServerPuk, certificate.EllipticCurve);
-    //
-    //     ClientVariables.Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(shareKey.x.ToString()), KDF.DefaultRoundsEnc);
-    //     ClientVariables.KMac = KDF.DeriveKey(Encoding.ASCII.GetBytes(shareKey.x.ToString()), KDF.DefaultRoundsMac);
-    //     
-    //     AesEncryptionProvider aes = new AesEncryptionProvider(Encoding.ASCII.GetBytes(shareKey.x.ToString()));
-    //     byte[] encryptedCredentials = aes.Encrypt(JsonConvert.SerializeObject(identity), certificate.NiosKey);
-    //
-    //     LoginForm loginForm = new()
-    //     {
-    //         ClientPuk = ClientVariables.Puk,
-    //         EncryptedCredentials = Encoding.ASCII.GetString(encryptedCredentials)
-    //     };
-    //
-    //     string signedLoginForm = signLoginForm(loginForm, certificate.ServerPuk);
-    //     
-    //     StringContent httpContent = new StringContent(signedLoginForm, Encoding.UTF8, "application/json");
-    //
-    //
-    //     Task<HttpResponseMessage> loginResultTask =  Http.PostAsync("https://localhost:5001/ElectMe/login", httpContent);
-    //
-    //     while (!loginResultTask.IsCompleted)
-    //     {
-    //         Console.WriteLine("Waiting for Login response...");
-    //     }
-    //
-    //     string loginResult = loginResultTask.Result.Content.ToString();
-    //
-    //     if (MAC.VerifyTag(Encoding.ASCII.GetBytes(loginResult), ClientVariables.KMac))
-    //     {
-    //         byte[] encryptedMessage = MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(loginResult), ClientVariables.KMac);
-    //         string jsonDecrypted = aes.Decrypt(encryptedMessage, ClientVariables.Kenc);
-    //
-    //         LoginResult result = JsonConvert.DeserializeObject<LoginResult>(jsonDecrypted);
-    //
-    //         if (result.Status.Equals(200))
-    //         {
-    //             NavManager.NavigateTo("/vote");
-    //         }
-    //         else
-    //         {
-    //             NavManager.NavigateTo("/error");
-    //         }
-    //
-    //     }
-    //     
-    // }
-    }
-
-    private string signLoginForm(LoginForm loginForm, EllipticCurvePoint serverPuk)
-    {
-        return JsonSerializer.Serialize(loginForm);
-    }
-
-    private bool verifyCA(InitialPackage certificate)
-    {
-        byte[] InitialPackagesignature = certificate.CertificateSignature;
-        return true;
-    }
 
     private void InvalidCredentials()
     {
         Console.WriteLine("Invalid Credentials");
     }
 
+    private void HandleLoginAttempt()
+    {
+        Task<string> initialPackage = new HttpRequester().RetrieveMessage("/connect");
+        while (!initialPackage.IsCompleted)
+        {
+            Console.WriteLine("waiting...");
+        }
+        if (verifyInitialPackage(initialPackage.Result))
+        {
+            setClientVariables(getEncodedPackage(initialPackage.Result));
+            Login();
+        }
+        else
+        {
+            Console.WriteLine("CA verification failed");
+            Console.WriteLine(initialPackage.Result);
+            NavManager.NavigateTo("/error");
+        }
+    }
+
+    private void Login()
+    {
+        Task<HttpResponseMessage> responseLoginResult = sendLoginRequest();
+        while (!responseLoginResult.IsCompleted)
+        {
+            Console.WriteLine("waiting...");
+        }
+
+        string loginResultString = responseLoginResult.Result.Content.ReadAsStringAsync().Result;
+
+        if (verifyMessage(loginResultString))
+        {
+            LoginResult loginResult = decryptLoginResult(loginResultString);
+            if (loginResult.Status.Equals(200))
+            {
+                setElectMeVariables(loginResult);
+                NavManager.NavigateTo("/vote");
+            }
+            else
+            {
+                Console.WriteLine("Login Attempt failed ");
+                NavManager.NavigateTo("/error");
+            }
+           
+        }
+        else
+        {
+         
+            Console.WriteLine("Verification of message coming from Server failed");
+            NavManager.NavigateTo("/error");
+        }
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    ///stuff that need to be moved later on lower layers
+    private LoginResult decryptLoginResult(string loginResultString)
+    {
+        byte[] encryptedLoginResult = MAC.extractEncryptedContent(
+            Encoding.ASCII.GetBytes(loginResultString), ClientVariables.KMac);
+        string LoginResult = new AesEncryptionProvider(ClientVariables.Kenc)
+            .Decrypt(encryptedLoginResult, ClientVariables.Kenc);
+        return JsonSerializer.Deserialize<LoginResult>(LoginResult);
+    }
+
+
+    private bool verifyMessage(string responseLoginResult)
+    {
+        return MAC.VerifyTag(Encoding.ASCII.GetBytes(responseLoginResult), ClientVariables.KMac);
+    }
+
+    private void setElectMeVariables(LoginResult loginResult)
+    {
+        ClientVariables.DeviceToken = loginResult.DeviceToken;
+        ClientVariables.VoteToken = loginResult.VoteToken;
+    }
+
+    private Task<HttpResponseMessage> sendLoginRequest()
+    {
+        LoginForm loginForm = new()
+        {
+            ClientPuk = ClientVariables.Puk,
+            EncryptedCredentials = new AesEncryptionProvider(ClientVariables.NiosKey)
+                .Encrypt(JsonSerializer.Serialize(identity), ClientVariables.NiosKey),
+            HashedCPR = new SHA256Managed().ComputeHash(
+                Encoding.ASCII.GetBytes(identity.Cpr))
+        };
+
+        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+        serializerOptions.Converters.Add(new BigIntegerConverter());
+
+        string loginMessage = JsonSerializer.Serialize(Signing.signMessage(
+            JsonSerializer.Serialize(loginForm), ClientVariables.EllipticCurve, ClientVariables.Prk), serializerOptions);
+        return new HttpRequester().PostMessage(loginMessage, "/login");
+    }
+
+
+    private void setClientVariables(string package)
+    {
+        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+        serializerOptions.Converters.Add(new BigIntegerConverter());
+        InitialPackage initialPackage = JsonSerializer.Deserialize<InitialPackage>(package, serializerOptions);
+
+        ClientVariables.Puk = KeyGeneration.calculatePublicKey(
+            ClientVariables.Prk, initialPackage.EllipticCurve);
+        EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
+            ClientVariables.Prk, initialPackage.ServerPuk, initialPackage.EllipticCurve);
+        ClientVariables.EllipticCurve = initialPackage.EllipticCurve;
+        ClientVariables.NiosKey = initialPackage.NiosKey;
+        ClientVariables.Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsEnc);
+        ClientVariables.KMac = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsMac);
+    }
+
+
+    private string getEncodedPackage(string initialPackage)
+    {
+        byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
+        byte[] encryptionKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsEnc);
+        byte[] encryptedInitialPackage = 
+            MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
+        return new AesEncryptionProvider(encryptionKey).Decrypt(encryptedInitialPackage, encryptionKey);
+
+    }
+
+    private bool verifyInitialPackage(string initialPackage)
+    {
+        byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
+        return MAC.VerifyTag(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
+    }
+
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }
 #pragma warning restore 1591

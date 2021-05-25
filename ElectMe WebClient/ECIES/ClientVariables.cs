@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Text;
 using ElectMe_WebClient.ECIES.Common.ECC;
 using ElectMe_WebClient.ECIES.KeyGeneration;
 
@@ -8,6 +9,11 @@ namespace ElectMe_WebClient.ECIES
     {
         public static BigInteger Prk = PrivateKeyGenerator.generatePrivateKey();
         public static EllipticCurvePoint Puk { get; set; }
+        public static EllipticCurve EllipticCurve { get; set; }
+        public static byte[] NiosKey { get; set; }
+        public static byte[] CertificateAuthority = Encoding.ASCII.GetBytes("Certificate Authority signature");
+
+        public static string ElectMeBaseURL = "https://localhost:5001";
         public static byte[] Kenc { get; set; }
         public static byte[] KMac { get; set; }
         public static string DeviceToken { get; set; }
