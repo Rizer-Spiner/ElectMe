@@ -44,7 +44,6 @@ namespace ElectMe_WebServer.Controllers
 
         [HttpPost]
         [Route("/login")]
-        [Consumes("text/plain")]
         public string Login([FromBody] string message)
         {
             return loginClientToLoginServer(message);
@@ -78,7 +77,7 @@ namespace ElectMe_WebServer.Controllers
             JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
             serializerOptions.Converters.Add(new BigIntegerConverter());
 
-            LoginContainer loginContainer = JsonSerializer.Deserialize<LoginContainer>(message);
+            LoginContainer loginContainer = JsonSerializer.Deserialize<LoginContainer>(message, serializerOptions);
             EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(EncryptionVariables.PrkcForClient,
                 loginContainer.clientPuk, EncryptionVariables.EllipticCurveForClient);
             ECIESUnprocessResult unprocessResult = ECIESProvider.unprocessMessage(sharedKey.x.ToString(),

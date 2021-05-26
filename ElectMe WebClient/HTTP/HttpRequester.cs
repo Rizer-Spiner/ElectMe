@@ -27,9 +27,9 @@ namespace ElectMe_WebClient.HTTP
             Client = new HttpClient();
             Client.BaseAddress = new Uri(ClientVariables.ElectMeBaseURL);
             Client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("text/plain"));
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
-            StringContent content = new StringContent(message, Encoding.ASCII, "text/plain");
+            StringContent content = new StringContent(message, Encoding.ASCII, "application/json");
             return await Client.PostAsync(url, content);
         }
     }

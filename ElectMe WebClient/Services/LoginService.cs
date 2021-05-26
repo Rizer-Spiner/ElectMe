@@ -77,7 +77,7 @@ namespace ElectMe_WebClient.Services
 
 
             string loginResultString = responseLoginResult.Content.ReadAsStringAsync().Result;
-            LoginResultContainer resultContainer = JsonSerializer.Deserialize<LoginResultContainer>(loginResultString);
+            LoginResultContainer resultContainer = JsonSerializer.Deserialize<LoginResultContainer>(loginResultString, serializerOptions);
 
             ECIESUnprocessResult unprocessResult = ECIESProvider.unprocessMessage(
                 ClientVariables.SharedKey.x.ToString(),
@@ -86,7 +86,7 @@ namespace ElectMe_WebClient.Services
 
             if (unprocessResult.Status != MyEnum.Successful)
                 return MyEnum.Unauthorized;
-            LoginResult result = JsonSerializer.Deserialize<LoginResult>(unprocessResult.DeprocessedMessage);
+            LoginResult result = JsonSerializer.Deserialize<LoginResult>(unprocessResult.DeprocessedMessage, serializerOptions);
             if (result.Status != 200)
                 return MyEnum.Fail;
             else

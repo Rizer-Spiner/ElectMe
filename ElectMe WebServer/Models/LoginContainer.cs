@@ -12,7 +12,7 @@ namespace ElectMe_WebServer.Models
         // public string encryptedLoginPackage { get; set; }
         // public EllipticCurvePoint clientPuk { get; set; }
         // public byte[] tag { get; set; }
-        
+
         public EllipticCurvePoint clientPuk { get; set; }
         public ECIESProcessResult loginPackage { get; set; }
     }
