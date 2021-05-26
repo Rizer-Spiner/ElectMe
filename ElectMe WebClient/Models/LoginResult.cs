@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ElectMe_WebClient.ECIES.Common.ECC;
 
-namespace ElectMe_WebServer.Models
+namespace ElectMe_WebClient.Models
 {
     public class LoginResult
     {
         public int Status { get; set; }
-        public string DeviceToken { get; set; }
-        public string VoteToken { get; set; }
+        public string AuthToken { get; set; }
+        public EllipticCurvePoint ElectionPuk;
         public List<string> Choices { get; set; }
     }
 }

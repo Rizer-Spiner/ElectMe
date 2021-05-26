@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace ElectMe_WebServer.ECIES.util
 {
@@ -7,9 +6,9 @@ namespace ElectMe_WebServer.ECIES.util
     {
         public static byte[] GetTag(byte[] encryptedMessage, byte[] Kmac)
         {
-            using (var hashMac256 = new HMACSHA256(Kmac))
+            /*using (var hashMac256 = new HMACSHA256(Kmac))
             {
-                /*byte[] hash = hashMac256.ComputeHash(encryptedMessage);
+                byte[] hash = hashMac256.ComputeHash(encryptedMessage);
 
                 byte[] Tag = new byte[hash.Length + encryptedMessage.Length];
 
@@ -23,12 +22,10 @@ namespace ElectMe_WebServer.ECIES.util
                     Tag[i] = encryptedMessage[i - hash.Length];
                 }
 
-                return Tag;*/
-
-                return (new HMACSHA256(Kmac)).ComputeHash(encryptedMessage);
-            }
+                return Tag;
+            }*/
+            return (new HMACSHA256(Kmac)).ComputeHash(encryptedMessage);
         }
-
 
         public static bool VerifyTag(byte[] message, byte[] KMac)
         {
@@ -61,25 +58,25 @@ namespace ElectMe_WebServer.ECIES.util
             return true;
         }
 
-        public static byte[] extractEncryptedContent(byte[] signedMessage, byte[] KMac)
-        {
-            using (HMACSHA256 hmac = new HMACSHA256(KMac))
-            {
-                byte[] storedHash = new byte[hmac.HashSize / 8];
-
-                for (int i = 0; i < storedHash.Length; i++)
-                {
-                    storedHash[i] = signedMessage[i];
-                }
-
-                byte[] messageContent = new byte[signedMessage.Length - storedHash.Length];
-                for (int i = 0; i < signedMessage.Length - storedHash.Length; i++)
-                {
-                    messageContent[i] = signedMessage[i + storedHash.Length];
-                }
-
-                return messageContent;
-            }
-        }
+        // public static byte[] extractEncryptedContent(byte[] signedMessage, byte[] KMac)
+        // {
+        //     using (HMACSHA256 hmac = new HMACSHA256(KMac))
+        //     {
+        //         byte[] storedHash = new byte[hmac.HashSize / 8];
+        //
+        //         for (int i = 0; i < storedHash.Length; i++)
+        //         {
+        //             storedHash[i] = signedMessage[i];
+        //         }
+        //
+        //         byte[] messageContent = new byte[signedMessage.Length - storedHash.Length];
+        //         for (int i = 0; i < signedMessage.Length - storedHash.Length; i++)
+        //         {
+        //             messageContent[i] = signedMessage[i + storedHash.Length];
+        //         }
+        //
+        //         return messageContent;
+        //     }
+        // }
     }
 }

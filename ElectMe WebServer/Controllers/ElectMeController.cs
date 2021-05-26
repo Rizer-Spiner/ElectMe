@@ -44,66 +44,70 @@ namespace ElectMe_WebServer.Controllers
 
         [HttpPost]
         [Route("/login")]
+        [Consumes("text/plain")]
         public string Login([FromBody] string message)
         {
-            if (verifyMessage(message))
-            {
-                return loginClientToLoginServer(message);
-            }
-            else
-            {
-                return clientLoginNotAllowed();
-            }
+            return loginClientToLoginServer(message);
         }
-   
 
 
         //stuff that controller shouldn't know
-        private bool verifyMessage(string message)
-        {
-            JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
-            serializerOptions.Converters.Add(new BigIntegerConverter());
-            Signature signature = JsonSerializer.Deserialize<Signature>(message, serializerOptions);
-            
-            return Verifying.verifyMessage(signature, message, EncryptionVariables.PukForClients,
-                EncryptionVariables.EllipticCurveForClient);
+        // private bool verifyMessage(string message)
+        // {
+        //     JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+        //     serializerOptions.Converters.Add(new BigIntegerConverter());
+        //     Signature signature = JsonSerializer.Deserialize<Signature>(message, serializerOptions);
+        //
+        //     return Verifying.verifyMessage(signature, message, EncryptionVariables.PukForClients,
+        //         EncryptionVariables.EllipticCurveForClient);
+        // }
+        
+        // https://weblog.west-wind.com/posts/2017/sep/14/accepting-raw-request-body-content-in-aspnet-core-api-controllers
+        // public static async Task<string> GetRawBodyStringAsync(this HttpRequest request, Encoding encoding = null)
+        // {
+        //     if (encoding == null)
+        //         encoding = Encoding.UTF8;
+        //
+        //     using (StreamReader reader = new StreamReader(request.Body, encoding))
+        //         return await reader.ReadToEndAsync();
+        // }
 
-        }
 
         private string loginClientToLoginServer(string message)
         {
             JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
             serializerOptions.Converters.Add(new BigIntegerConverter());
-            Signature signature = JsonSerializer.Deserialize<Signature>(message, serializerOptions);
 
-            string loginFormSerialized = Verifying.getContentOfVerifiedSignature(signature);
-            LoginPackage loginForm = JsonSerializer.Deserialize<LoginPackage>(loginFormSerialized);
+            LoginContainer loginContainer = JsonSerializer.Deserialize<LoginContainer>(message);
+            EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(EncryptionVariables.PrkcForClient,
+                loginContainer.clientPuk, EncryptionVariables.EllipticCurveForClient);
+            ECIESUnprocessResult unprocessResult = ECIESProvider.unprocessMessage(sharedKey.x.ToString(),
+                loginContainer.loginPackage.Tag, loginContainer.loginPackage.EncryptedMessage);
 
-            NIOSLoginResult niosLoginResult = _login.login(loginForm.EncryptedCredentials);
-            if (niosLoginResult.Status.Equals(200))
+            if (unprocessResult.Status != MyEnum.Successful)
             {
-                string token = niosLoginResult.Token;
-                string deviceToken = PrivateKeyGenerator.generatePrivateKey().ToString();
-
-                // to be changed later to actual storage
-                _subscribers.Add(deviceToken, loginForm.ClientPuk);
-
-                LoginResult result = new LoginResult()
+                return JsonSerializer.Serialize(new LoginResultContainer()
                 {
-                    Status = 200,
-                    DeviceToken = deviceToken,
-                    VoteToken = token,
-                    Choices = getElectionData()
-                };
-
-                return returnMessage(JsonSerializer.Serialize(result), loginForm.ClientPuk);
+                    LoginResultECIESProcessed = ECIESProvider.processMessage(sharedKey.x.ToString(),
+                        JsonSerializer.Serialize(new LoginResult()
+                        {
+                            Status = 401
+                        }))
+                });
             }
-            return JsonSerializer.Serialize(new LoginResult()
+            else
             {
-                Status = 401,
-            });
+                LoginPackage loginPackage =
+                    JsonSerializer.Deserialize<LoginPackage>(unprocessResult.DeprocessedMessage);
+                LoginResult loginResult = _login.login(loginPackage);
+                
+                return JsonSerializer.Serialize(new LoginResultContainer()
+                {
+                    LoginResultECIESProcessed = ECIESProvider.processMessage(sharedKey.x.ToString(),
+                        JsonSerializer.Serialize(loginResult))
+                });
+            }
         }
-        
 
 
         private string getInitialPackage()
@@ -113,67 +117,69 @@ namespace ElectMe_WebServer.Controllers
             serializerOptions.Converters.Add(new BigIntegerConverter());
             string initialPackageJson = JsonSerializer.Serialize(initialPackage, serializerOptions);
 
-            Signature signature = Signing.signMessage(initialPackageJson, EncryptionVariables.EllipticCurveForClient, EncryptionVariables.PrkcForClient);
-            InitialPackageContainer container = new InitialPackageContainer() { initialPackage = initialPackage, signature = signature };
-            
+            Signature signature = Signing.signMessage(initialPackageJson, EncryptionVariables.EllipticCurveForClient,
+                EncryptionVariables.PrkcForClient);
+            InitialPackageContainer container = new InitialPackageContainer()
+                {initialPackage = initialPackage, signature = signature};
+
             return JsonSerializer.Serialize(container, serializerOptions);
         }
 
+        //
+        // private string returnMessage(string serialized, EllipticCurvePoint ClientPuk)
+        // {
+        //     EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(EncryptionVariables.PrkcForClient,
+        //         ClientPuk,
+        //         EncryptionVariables.EllipticCurveForClient);
+        //     byte[] Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsEnc);
+        //     byte[] Kmac = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsMac);
+        //
+        //     byte[] encryptedMessage = new AesEncryptionProvider(Kenc).Encrypt(serialized, Kenc);
+        //     byte[] signedMessage = MAC.GetTag(encryptedMessage, Kmac);
+        //
+        //     return Encoding.ASCII.GetString(signedMessage);
+        // }
 
-        private string returnMessage(string serialized, EllipticCurvePoint ClientPuk)
-        {
-            EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(EncryptionVariables.PrkcForClient,
-                ClientPuk,
-                EncryptionVariables.EllipticCurveForClient);
-            byte[] Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsEnc);
-            byte[] Kmac = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsMac);
 
-            byte[] encryptedMessage = new AesEncryptionProvider(Kenc).Encrypt(serialized, Kenc);
-            byte[] signedMessage = MAC.GetTag(encryptedMessage, Kmac);
+        // private string clientLoginNotAllowed()
+        // {
+        //     return JsonSerializer.Serialize(new LoginResult()
+        //     {
+        //         Status = 401
+        //     });
+        // }
 
-            return Encoding.ASCII.GetString(signedMessage);
-        }
 
-        
-        private string clientLoginNotAllowed()
-        {
-            return JsonSerializer.Serialize(new LoginResult()
-            {
-                Status = 400
-            });
-        }
-        
-             
-        
+        // Signature signature = JsonSerializer.Deserialize<Signature>(message, serializerOptions);
+        //
+        // string loginFormSerialized = Verifying.getContentOfVerifiedSignature(signature);
+        // LoginPackage loginForm = JsonSerializer.Deserialize<LoginPackage>(loginFormSerialized);
+        //
+        // NIOSLoginResult niosLoginResult = _login.login(loginForm.EncryptedCredentials);
+        // if (niosLoginResult.Status.Equals(200))
+        // {
+        //     string token = niosLoginResult.Token;
+        //     string deviceToken = PrivateKeyGenerator.generatePrivateKey().ToString();
+        //
+        //     // to be changed later to actual storage
+        //     _subscribers.Add(deviceToken, loginForm.ClientPuk);
+        //
+        //     LoginResult result = new LoginResult()
+        //     {
+        //         Status = 200,
+        //         DeviceToken = deviceToken,
+        //         VoteToken = token,
+        //         Choices = getElectionData()
+        //     };
+        //
+        //     return returnMessage(JsonSerializer.Serialize(result), loginForm.ClientPuk);
+        // }
+        // return JsonSerializer.Serialize(new LoginResult()
+        // {
+        //     Status = 401,
+        // });
 
-        private List<string> getElectionData()
-        {
-            List<string> choices = new List<string>();
-            choices.Add("Barrack Obama");
-            choices.Add("Donald Trump");
-            choices.Add("Joe Biden");
-            
-            return choices;
 
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         //
         // [HttpPost]
         // [Route("/logout/{deviceToken}")]

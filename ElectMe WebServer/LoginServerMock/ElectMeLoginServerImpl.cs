@@ -1,24 +1,39 @@
-﻿using ElectMe_WebServer.ECIES.KeyGeneration;
+﻿using System.Collections.Generic;
+using ElectMe_WebServer.ECIES;
+using ElectMe_WebServer.ECIES.KeyGeneration;
+using ElectMe_WebServer.Models;
 
 namespace ElectMe_WebServer.LoginServerMock
 {
     public class ElectMeLoginServerImpl : ElectMeLoginServer
     {
-        public NIOSLoginResult login(byte[] encryptedCredentials)
+        public LoginResult login(LoginPackage loginPackage)
         {
-            return new NIOSLoginResult
+            return new LoginResult
             {
                 Status = 200,
-                Token = PrivateKeyGenerator.generatePrivateKey().ToString()
+                AuthToken = PrivateKeyGenerator.generatePrivateKey().ToString(),
+                ElectionPuk = EncryptionVariables.ElectionPuk,
+                Choices = getChoices()
             };
         }
 
-        public NIOSLoginResult logout(byte[] token)
+        private List<string> getChoices()
         {
-            return new NIOSLoginResult
+            List<string> choices = new List<string>();
+            choices.Add("Barrack Obama");
+            choices.Add("Donald Trump");
+            choices.Add("Hillary Clinton");
+
+            return choices;
+        }
+
+        public LoginResult logout(byte[] token)
+        {
+            return new LoginResult
             {
                 Status = 200,
-                Token = "null"
+
             };
         }
     }

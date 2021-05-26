@@ -1,6 +1,4 @@
 ﻿using ElectMe_WebClient.ECIES.Common.ECC;
-using ElectMe_WebClient.ECIES.KeyGeneration;
-using Newtonsoft.Json;
 
 namespace ElectMe_WebClient.ECIES
 {

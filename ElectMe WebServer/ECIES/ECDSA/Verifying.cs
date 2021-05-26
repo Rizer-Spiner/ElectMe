@@ -1,8 +1,6 @@
-﻿using ElectMe_WebServer.ECIES.Common;
+﻿using System.Numerics;
+using ElectMe_WebServer.ECIES.Common;
 using ElectMe_WebServer.ECIES.Common.ECC;
-using System;
-using System.Numerics;
-
 
 namespace ElectMe_WebServer.ECIES.ECDSA
 {
@@ -24,11 +22,6 @@ namespace ElectMe_WebServer.ECIES.ECDSA
             EllipticCurvePoint GDependentPoint = PointMultiplication.multiplyPoint(u1, theCurve.G, theCurve);
             EllipticCurvePoint PublicKeyDependentPoint = PointMultiplication.multiplyPoint(u2, publicKey, theCurve);
             return PointAddition.addPoints(theCurve, GDependentPoint, PublicKeyDependentPoint);
-        }
-
-        public static string getContentOfVerifiedSignature(Signature signature)
-        {
-            throw new NotImplementedException();
         }
     }
 }

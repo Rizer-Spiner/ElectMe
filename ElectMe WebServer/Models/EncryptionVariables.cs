@@ -29,6 +29,10 @@ namespace ElectMe_WebServer.ECIES
 
         public static readonly string CertificateAuthority ="Certificate Authority signature";
 
+        public static readonly EllipticCurvePoint ElectionPuk =
+            KeyGeneration.KeyGeneration.calculatePublicKey(PrivateKeyGenerator.generatePrivateKey(),
+                EllipticCurveForClient);
+
         public static readonly InitialPackage initialPackage = new()
         {
             EllipticCurve = EllipticCurveForClient,

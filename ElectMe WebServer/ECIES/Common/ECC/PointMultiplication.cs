@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Text;
+﻿using System.Numerics;
+using BitOperations = ElectMe_WebServer.ECIES.Common.BitOperations;
 
 namespace ElectMe_WebServer.ECIES.Common.ECC
 {

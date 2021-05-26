@@ -1,17 +1,12 @@
 ﻿#nullable enable
 using System;
+using ElectMe_WebServer.Models;
 
 namespace ElectMe_WebServer.LoginServerMock
 {
     public interface ElectMeLoginServer
     {
-        NIOSLoginResult login(byte[] encryptedCredentials);
-        NIOSLoginResult logout(byte[] token);
+        LoginResult login(LoginPackage niosPackage);
     }
-
-    public class NIOSLoginResult
-    {
-        public int Status { get; set; }
-        public String? Token { get; set; }
-    }
+    
 }

@@ -11,11 +11,11 @@ namespace ElectMe_WebClient.ECIES
         public static EllipticCurvePoint Puk { get; set; }
         public static EllipticCurve EllipticCurve { get; set; }
         public static EllipticCurvePoint NiosKey { get; set; }
-        public static byte[] CertificateAuthority = Encoding.ASCII.GetBytes("Certificate Authority signature");
+        public static string CertificateAuthority = "Certificate Authority signature";
 
-        public static string ElectMeBaseURL = "https://localhost:44352";
-        public static byte[] Kenc { get; set; }
-        public static byte[] KMac { get; set; }
+        public static string ElectMeBaseURL = "https://localhost:5001";
+       
+        public static EllipticCurvePoint SharedKey { get; set; }
         public static string DeviceToken { get; set; }
         public static string VoteToken { get; set; }
     }

@@ -1,12 +1,7 @@
-﻿using ElectMe_WebServer.ECIES.Common;
+﻿using System.Numerics;
+using ElectMe_WebServer.ECIES.Common;
 using ElectMe_WebServer.ECIES.Common.ECC;
 using ElectMe_WebServer.ECIES.KeyGeneration;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace ElectMe_WebServer.ECIES.ECDSA
 {

@@ -58,25 +58,25 @@ namespace ElectMe_WebClient.ECIES.util
             return true;
         }
 
-        public static byte[] extractEncryptedContent(byte[] signedMessage, byte[] KMac)
-        {
-            using (HMACSHA256 hmac = new HMACSHA256(KMac))
-            {
-                byte[] storedHash = new byte[hmac.HashSize / 8];
-
-                for (int i = 0; i < storedHash.Length; i++)
-                {
-                    storedHash[i] = signedMessage[i];
-                }
-
-                byte[] messageContent = new byte[signedMessage.Length - storedHash.Length];
-                for (int i = 0; i < signedMessage.Length - storedHash.Length; i++)
-                {
-                    messageContent[i] = signedMessage[i + storedHash.Length];
-                }
-
-                return messageContent;
-            }
-        }
+        // public static byte[] extractEncryptedContent(byte[] signedMessage, byte[] KMac)
+        // {
+        //     using (HMACSHA256 hmac = new HMACSHA256(KMac))
+        //     {
+        //         byte[] storedHash = new byte[hmac.HashSize / 8];
+        //
+        //         for (int i = 0; i < storedHash.Length; i++)
+        //         {
+        //             storedHash[i] = signedMessage[i];
+        //         }
+        //
+        //         byte[] messageContent = new byte[signedMessage.Length - storedHash.Length];
+        //         for (int i = 0; i < signedMessage.Length - storedHash.Length; i++)
+        //         {
+        //             messageContent[i] = signedMessage[i + storedHash.Length];
+        //         }
+        //
+        //         return messageContent;
+        //     }
+        // }
     }
 }

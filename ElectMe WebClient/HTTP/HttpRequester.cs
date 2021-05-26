@@ -22,7 +22,7 @@ namespace ElectMe_WebClient.HTTP
 
         }
 
-        public Task<HttpResponseMessage> PostMessage(string message, string url)
+        public async Task<HttpResponseMessage> PostMessage(string message, string url)
         {
             Client = new HttpClient();
             Client.BaseAddress = new Uri(ClientVariables.ElectMeBaseURL);
@@ -30,7 +30,7 @@ namespace ElectMe_WebClient.HTTP
                 new MediaTypeWithQualityHeaderValue("text/plain"));
 
             StringContent content = new StringContent(message, Encoding.ASCII, "text/plain");
-            return Client.PostAsync(url, content);
+            return await Client.PostAsync(url, content);
         }
     }
 }

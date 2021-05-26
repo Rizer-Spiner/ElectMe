@@ -13,148 +13,92 @@ namespace ElectMe_WebClient.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 1 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 2 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 3 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 4 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 5 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 6 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 7 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 8 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 9 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using ElectMe_WebClient;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\_Imports.razor"
+#line 10 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\_Imports.razor"
 using ElectMe_WebClient.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 2 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using ElectMe_WebClient.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.HTTP;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using System.Security.Cryptography;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using System.Text;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 6 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 3 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using System.Text.Json;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 8 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES.Common.ECC;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 9 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES.ECDSA;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 10 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebClient.ECIES.KeyGeneration;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 4 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
 using ElectMe_WebClient.ECIES.util;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 12 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-using ElectMe_WebServer.Models;
 
 #line default
 #line hidden
@@ -168,11 +112,10 @@ using ElectMe_WebServer.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 65 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
+#line 49 "C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\Pages\Index.razor"
  
-    private int x = 1;
     ///stuff the view should know
-    private Identity identity = new();
+    private Credentials identity = new();
 
     private void InvalidCredentials()
     {
@@ -183,102 +126,143 @@ using ElectMe_WebServer.Models;
 
     private async void HandleLoginAttempt()
     {
-
         if (!await LoginService.initializeEncryptionVariables())
             errorMessage = "Could not connect to the server";
-        
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 94 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-           
+        Login();
     }
 
+    private async void Login()
+    {
+        switch (await LoginService.sendLoginRequest(identity))
+        {
+            case MyEnum.Unauthorized:
+            {
+                NavManager.NavigateTo("/error");
+                break;
+            }
+            case MyEnum.Fail:
+            {
+                NavManager.NavigateTo("/error");
+                break;
+            }
+            case MyEnum.Successful:
+            {
+                NavManager.NavigateTo("/vote");
+                break;
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 128 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-       
-
-
-
-
+    // if (verifyMessage(loginResultString))
+    // {
+    //     LoginResult loginResult = decryptLoginResult(loginResultString);
+    //     if (loginResult.Status.Equals(200))
+    //     {
+    //         setElectMeVariables(loginResult);
+    //         NavManager.NavigateTo("/vote");
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("Login Attempt failed ");
+    //         NavManager.NavigateTo("/error");
+    //     }
+    // }
+    // else
+    // {
+    //     Console.WriteLine("Verification of message coming from Server failed");
+    //     NavManager.NavigateTo("/error");
+    // }
 
     ///stuff that need to be moved later on lower layers
-    private LoginResult decryptLoginResult(string loginResultString)
-    {
-        byte[] encryptedLoginResult = MAC.extractEncryptedContent(
-            Encoding.ASCII.GetBytes(loginResultString), ClientVariables.KMac);
-        string LoginResult = new AesEncryptionProvider(ClientVariables.Kenc)
-            .Decrypt(encryptedLoginResult, ClientVariables.Kenc);
-        return JsonSerializer.Deserialize<LoginResult>(LoginResult);
-    }
+  
 
 
-    private bool verifyMessage(string responseLoginResult)
-    {
-        return MAC.VerifyTag(Encoding.ASCII.GetBytes(responseLoginResult), ClientVariables.KMac);
-    }
-
-    private void setElectMeVariables(LoginResult loginResult)
-    {
-        ClientVariables.DeviceToken = loginResult.DeviceToken;
-        ClientVariables.VoteToken = loginResult.VoteToken;
-    }
 
     
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 173 "D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\Pages\Index.razor"
-       
-
-
-    private void setClientVariables(string package)
-    {
-        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
-        serializerOptions.Converters.Add(new BigIntegerConverter());
-        InitialPackage initialPackage = JsonSerializer.Deserialize<InitialPackage>(package, serializerOptions);
-
-        ClientVariables.Puk = KeyGeneration.calculatePublicKey(
-            ClientVariables.Prk, initialPackage.EllipticCurve);
-        EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
-            ClientVariables.Prk, initialPackage.ServerPuk, initialPackage.EllipticCurve);
-        ClientVariables.EllipticCurve = initialPackage.EllipticCurve;
-        ClientVariables.NiosKey = initialPackage.NiosKey;
-        ClientVariables.Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsEnc);
-        ClientVariables.KMac = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsMac);
-    }
-
-
-    private string getEncodedPackage(string initialPackage)
-    {
-        byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
-        byte[] encryptionKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsEnc);
-        byte[] encryptedInitialPackage =
-            MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
-        return new AesEncryptionProvider(encryptionKey).Decrypt(encryptedInitialPackage, encryptionKey);
-
-    }
-
-    private bool verifyInitialPackage(string initialPackage)
-    {
-        byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
-        return MAC.VerifyTag(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
-    }
+    // private LoginResult decryptLoginResult(string loginResultString)
+    // {
+    //     byte[] encryptedLoginResult = MAC.extractEncryptedContent(
+    //         Encoding.ASCII.GetBytes(loginResultString), ClientVariables.KMac);
+    //     string LoginResult = new AesEncryptionProvider(ClientVariables.Kenc)
+    //         .Decrypt(encryptedLoginResult, ClientVariables.Kenc);
+    //     return JsonSerializer.Deserialize<LoginResult>(LoginResult);
+    // }
+    //
+    //
+    // private bool verifyMessage(string responseLoginResult)
+    // {
+    //     return MAC.VerifyTag(Encoding.ASCII.GetBytes(responseLoginResult), ClientVariables.KMac);
+    // }
+    //
+    // private void setElectMeVariables(LoginResult loginResult)
+    // {
+    //     ClientVariables.DeviceToken = loginResult.DeviceToken;
+    //     ClientVariables.VoteToken = loginResult.VoteToken;
+    // }
+    
+    // private void setClientVariables(string package)
+    // {
+    //     JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+    //     serializerOptions.Converters.Add(new BigIntegerConverter());
+    //     InitialPackage initialPackage = JsonSerializer.Deserialize<InitialPackage>(package, serializerOptions);
+    //
+    //     ClientVariables.Puk = KeyGeneration.calculatePublicKey(
+    //         ClientVariables.Prk, initialPackage.EllipticCurve);
+    //     EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
+    //         ClientVariables.Prk, initialPackage.ServerPuk, initialPackage.EllipticCurve);
+    //     ClientVariables.EllipticCurve = initialPackage.EllipticCurve;
+    //     ClientVariables.NiosKey = initialPackage.NiosKey;
+    //     ClientVariables.Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsEnc);
+    //     ClientVariables.KMac = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsMac);
+    // }
+    //
+    //
+    // private string getEncodedPackage(string initialPackage)
+    // {
+    //     byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
+    //     byte[] encryptionKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsEnc);
+    //     byte[] encryptedInitialPackage =
+    //         MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
+    //     return new AesEncryptionProvider(encryptionKey).Decrypt(encryptedInitialPackage, encryptionKey);
+    // }
+    //
+    // private bool verifyInitialPackage(string initialPackage)
+    // {
+    //     byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
+    //     return MAC.VerifyTag(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
+    // }
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ElectMe_WebClient.Services.LoginService LoginService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private Services.LoginService LoginService { get; set; }
     }
 }
 #pragma warning restore 1591

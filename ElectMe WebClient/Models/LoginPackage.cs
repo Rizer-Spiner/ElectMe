@@ -9,7 +9,7 @@ namespace ElectMe_WebClient.Models
     {
         [Required]
         [StringLength(10, ErrorMessage = "Cpr number is a 10 digits number", MinimumLength = 10)]
-        public string Cpr { get; set; } //why hashed?
+        public string Cpr { get; set; } //why hashed? - Do you think is ok to send a CPR in the open?
         public NIOSPackage niosPackage { get; set; }
     }
 }

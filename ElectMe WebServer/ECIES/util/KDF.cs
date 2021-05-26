@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-
 namespace ElectMe_WebServer.ECIES.util
 {
     public class KDF

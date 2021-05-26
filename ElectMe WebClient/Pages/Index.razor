@@ -1,16 +1,8 @@
 ﻿@page "/"
 @using ElectMe_WebClient.Models
-@using ElectMe_WebClient.HTTP
-@using System.Security.Cryptography
-@using System.Text
 @using System.Text.Json
-@using ElectMe_WebClient.ECIES
-@using ElectMe_WebClient.ECIES.Common.ECC
-@using ElectMe_WebClient.ECIES.ECDSA
-@using ElectMe_WebClient.ECIES.KeyGeneration
 @using ElectMe_WebClient.ECIES.util
-@using ElectMe_WebServer.Models
-@inject ElectMe_WebClient.Services.LoginService LoginService
+@inject Services.LoginService LoginService
 
 
 @inject NavigationManager NavManager
@@ -22,8 +14,8 @@ Are you ready to vote?
     @if (errorMessage.Length == 0)
     {
         <EditForm Model="@identity" OnValidSubmit="@HandleLoginAttempt" OnInvalidSubmit="@InvalidCredentials">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
 
             <div id="cpr">
                 <div align="center" aria-colspan="3"> Cpr number:</div>
@@ -32,7 +24,7 @@ Are you ready to vote?
                 </div>
             </div>
 
-            <br />
+            <br/>
             <div id="cpr">
                 <div align="center" aria-colspan="3"> Pin code:</div>
                 <div align="center" aria-colspan="9">
@@ -40,7 +32,7 @@ Are you ready to vote?
                 </div>
             </div>
 
-            <br />
+            <br/>
 
             <button type="submit">Login</button>
         </EditForm>
@@ -67,121 +59,135 @@ Are you ready to vote?
 
     private async void HandleLoginAttempt()
     {
-
         if (!await LoginService.initializeEncryptionVariables())
             errorMessage = "Could not connect to the server";
         Login();
     }
 
-    private void Login()
+    private async void Login()
     {
-        Task<HttpResponseMessage> responseLoginResult = sendLoginRequest();
-        while (!responseLoginResult.IsCompleted)
+        switch (await LoginService.sendLoginRequest(identity))
         {
-            Console.WriteLine("waiting...");
-        }
-
-        string loginResultString = responseLoginResult.Result.Content.ReadAsStringAsync().Result;
-
-        if (verifyMessage(loginResultString))
-        {
-            LoginResult loginResult = decryptLoginResult(loginResultString);
-            if (loginResult.Status.Equals(200))
+            case MyEnum.Unauthorized:
             {
-                setElectMeVariables(loginResult);
-                NavManager.NavigateTo("/vote");
-            }
-            else
-            {
-                Console.WriteLine("Login Attempt failed ");
                 NavManager.NavigateTo("/error");
+                break;
             }
-
-        }
-        else
-        {
-
-            Console.WriteLine("Verification of message coming from Server failed");
-            NavManager.NavigateTo("/error");
+            case MyEnum.Fail:
+            {
+                NavManager.NavigateTo("/error");
+                break;
+            }
+            case MyEnum.Successful:
+            {
+                NavManager.NavigateTo("/vote");
+                break;
+            }
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-
-
-
+    // if (verifyMessage(loginResultString))
+    // {
+    //     LoginResult loginResult = decryptLoginResult(loginResultString);
+    //     if (loginResult.Status.Equals(200))
+    //     {
+    //         setElectMeVariables(loginResult);
+    //         NavManager.NavigateTo("/vote");
+    //     }
+    //     else
+    //     {
+    //         Console.WriteLine("Login Attempt failed ");
+    //         NavManager.NavigateTo("/error");
+    //     }
+    // }
+    // else
+    // {
+    //     Console.WriteLine("Verification of message coming from Server failed");
+    //     NavManager.NavigateTo("/error");
+    // }
 
     ///stuff that need to be moved later on lower layers
-    private LoginResult decryptLoginResult(string loginResultString)
-    {
-        byte[] encryptedLoginResult = MAC.extractEncryptedContent(
-            Encoding.ASCII.GetBytes(loginResultString), ClientVariables.KMac);
-        string LoginResult = new AesEncryptionProvider(ClientVariables.Kenc)
-            .Decrypt(encryptedLoginResult, ClientVariables.Kenc);
-        return JsonSerializer.Deserialize<LoginResult>(LoginResult);
-    }
+  
 
 
-    private bool verifyMessage(string responseLoginResult)
-    {
-        return MAC.VerifyTag(Encoding.ASCII.GetBytes(responseLoginResult), ClientVariables.KMac);
-    }
 
-    private void setElectMeVariables(LoginResult loginResult)
-    {
-        ClientVariables.DeviceToken = loginResult.DeviceToken;
-        ClientVariables.VoteToken = loginResult.VoteToken;
-    }
-
-    private Task<HttpResponseMessage> sendLoginRequest()
-    {
-        EllipticCurvePoint niosSharedKey = KeyGeneration.calculateMasterKey(ClientVariables.Prk, ClientVariables.NiosKey, ClientVariables.EllipticCurve);
-        NIOSPackage nIOSPackage = new()
-        {
-            clientPUk = ClientVariables.Puk,
-            //how to use ecies here?
-            encryptedCredentials = new AesEncryptionProvider(niosSharedKey.x.ToByteArray())//change this to a different value
-                .Encrypt(JsonSerializer.Serialize(identity), niosSharedKey.x.ToByteArray()),
-        };
-
-        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
-        serializerOptions.Converters.Add(new BigIntegerConverter());
-
-        string loginMessage = JsonSerializer.Serialize(Signing.signMessage(
-            JsonSerializer.Serialize(loginForm), ClientVariables.EllipticCurve, ClientVariables.Prk), serializerOptions);
-        return new HttpRequester().PostMessage(loginMessage, "/login");
-    }
-
-
-    private void setClientVariables(string package)
-    {
-        JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
-        serializerOptions.Converters.Add(new BigIntegerConverter());
-        InitialPackage initialPackage = JsonSerializer.Deserialize<InitialPackage>(package, serializerOptions);
-
-        ClientVariables.Puk = KeyGeneration.calculatePublicKey(
-            ClientVariables.Prk, initialPackage.EllipticCurve);
-        EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
-            ClientVariables.Prk, initialPackage.ServerPuk, initialPackage.EllipticCurve);
-        ClientVariables.EllipticCurve = initialPackage.EllipticCurve;
-        ClientVariables.NiosKey = initialPackage.NiosKey;
-        ClientVariables.Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsEnc);
-        ClientVariables.KMac = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsMac);
-    }
-
-
-    private string getEncodedPackage(string initialPackage)
-    {
-        byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
-        byte[] encryptionKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsEnc);
-        byte[] encryptedInitialPackage =
-            MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
-        return new AesEncryptionProvider(encryptionKey).Decrypt(encryptedInitialPackage, encryptionKey);
-
-    }
-
-    private bool verifyInitialPackage(string initialPackage)
-    {
-        byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
-        return MAC.VerifyTag(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
-    }
+    
+    // private LoginResult decryptLoginResult(string loginResultString)
+    // {
+    //     byte[] encryptedLoginResult = MAC.extractEncryptedContent(
+    //         Encoding.ASCII.GetBytes(loginResultString), ClientVariables.KMac);
+    //     string LoginResult = new AesEncryptionProvider(ClientVariables.Kenc)
+    //         .Decrypt(encryptedLoginResult, ClientVariables.Kenc);
+    //     return JsonSerializer.Deserialize<LoginResult>(LoginResult);
+    // }
+    //
+    //
+    // private bool verifyMessage(string responseLoginResult)
+    // {
+    //     return MAC.VerifyTag(Encoding.ASCII.GetBytes(responseLoginResult), ClientVariables.KMac);
+    // }
+    //
+    // private void setElectMeVariables(LoginResult loginResult)
+    // {
+    //     ClientVariables.DeviceToken = loginResult.DeviceToken;
+    //     ClientVariables.VoteToken = loginResult.VoteToken;
+    // }
+    
+    // private void setClientVariables(string package)
+    // {
+    //     JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
+    //     serializerOptions.Converters.Add(new BigIntegerConverter());
+    //     InitialPackage initialPackage = JsonSerializer.Deserialize<InitialPackage>(package, serializerOptions);
+    //
+    //     ClientVariables.Puk = KeyGeneration.calculatePublicKey(
+    //         ClientVariables.Prk, initialPackage.EllipticCurve);
+    //     EllipticCurvePoint sharedKey = KeyGeneration.calculateMasterKey(
+    //         ClientVariables.Prk, initialPackage.ServerPuk, initialPackage.EllipticCurve);
+    //     ClientVariables.EllipticCurve = initialPackage.EllipticCurve;
+    //     ClientVariables.NiosKey = initialPackage.NiosKey;
+    //     ClientVariables.Kenc = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsEnc);
+    //     ClientVariables.KMac = KDF.DeriveKey(Encoding.ASCII.GetBytes(sharedKey.x.ToString()), KDF.DefaultRoundsMac);
+    // }
+    //
+    //
+    // private string getEncodedPackage(string initialPackage)
+    // {
+    //     byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
+    //     byte[] encryptionKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsEnc);
+    //     byte[] encryptedInitialPackage =
+    //         MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
+    //     return new AesEncryptionProvider(encryptionKey).Decrypt(encryptedInitialPackage, encryptionKey);
+    // }
+    //
+    // private bool verifyInitialPackage(string initialPackage)
+    // {
+    //     byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
+    //     return MAC.VerifyTag(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
+    // }
 }
