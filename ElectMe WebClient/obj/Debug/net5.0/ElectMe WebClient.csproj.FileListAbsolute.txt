@@ -155,7 +155,6 @@ D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\Razor\_Import
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
-D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Vote.cshtml.g.cs
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorAssemblyInfo.cache
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.RazorAssemblyInfo.cs
@@ -175,3 +174,5 @@ D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebCl
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\ElectMe WebClient.genruntimeconfig.cache
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Pages\Vote.razor.g.cs
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Vote.razor.g.cs
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\RazorDeclaration\Pages\Vote.razor.g.cs
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebClient\obj\Debug\net5.0\Razor\Pages\Vote.razor.g.cs

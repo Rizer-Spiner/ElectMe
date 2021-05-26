@@ -10,7 +10,7 @@
 @using ElectMe_WebClient.ECIES.KeyGeneration
 @using ElectMe_WebClient.ECIES.util
 @using ElectMe_WebServer.Models
-
+@inject ElectMe_WebClient.Services.LoginService LoginService
 
 
 @inject NavigationManager NavManager
@@ -19,61 +19,58 @@
 Are you ready to vote?
 
 <div aria-colspan="12" align="center">
-    <EditForm Model="@identity" OnValidSubmit="@HandleLoginAttempt" OnInvalidSubmit="@InvalidCredentials">
-        <DataAnnotationsValidator/>
-        <ValidationSummary/>
+    @if (errorMessage.Length == 0)
+    {
+        <EditForm Model="@identity" OnValidSubmit="@HandleLoginAttempt" OnInvalidSubmit="@InvalidCredentials">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
 
-        <div id="cpr">
-            <div align="center" aria-colspan="3"> Cpr number:</div>
-            <div align="center" aria-colspan="9">
-                <InputText id="Cpr nummer" @bind-Value="identity.Cpr"></InputText>
+            <div id="cpr">
+                <div align="center" aria-colspan="3"> Cpr number:</div>
+                <div align="center" aria-colspan="9">
+                    <InputText id="Cpr nummer" @bind-Value="identity.Cpr"></InputText>
+                </div>
             </div>
-        </div>
 
-        <br/>
-        <div id="cpr">
-            <div align="center" aria-colspan="3"> Pin code:</div>
-            <div align="center" aria-colspan="9">
-                <InputText type="password" id="Kode pin" @bind-Value="identity.Pin"></InputText>
+            <br />
+            <div id="cpr">
+                <div align="center" aria-colspan="3"> Pin code:</div>
+                <div align="center" aria-colspan="9">
+                    <InputText type="password" id="Kode pin" @bind-Value="identity.Pin"></InputText>
+                </div>
             </div>
-        </div>
 
-        <br/>
+            <br />
 
-        <button type="submit">Login</button>
-    </EditForm>
+            <button type="submit">Login</button>
+        </EditForm>
+    }
+    else
+    {
+        <p>@errorMessage</p>
+    }
+
 </div>
 
 
 @code
 {
-    
     ///stuff the view should know
-    private Identity identity = new();
+    private Credentials identity = new();
 
     private void InvalidCredentials()
     {
         Console.WriteLine("Invalid Credentials");
     }
 
-    private void HandleLoginAttempt()
+    private string errorMessage = "";
+
+    private async void HandleLoginAttempt()
     {
-        Task<string> initialPackage = new HttpRequester().RetrieveMessage("/connect");
-        while (!initialPackage.IsCompleted)
-        {
-            Console.WriteLine("waiting...");
-        }
-        if (verifyInitialPackage(initialPackage.Result))
-        {
-            setClientVariables(getEncodedPackage(initialPackage.Result));
-            Login();
-        }
-        else
-        {
-            Console.WriteLine("CA verification failed");
-            Console.WriteLine(initialPackage.Result);
-            NavManager.NavigateTo("/error");
-        }
+
+        if (!await LoginService.initializeEncryptionVariables())
+            errorMessage = "Could not connect to the server";
+        Login();
     }
 
     private void Login()
@@ -99,20 +96,20 @@ Are you ready to vote?
                 Console.WriteLine("Login Attempt failed ");
                 NavManager.NavigateTo("/error");
             }
-           
+
         }
         else
         {
-         
+
             Console.WriteLine("Verification of message coming from Server failed");
             NavManager.NavigateTo("/error");
         }
     }
 
-    
-    
-    
-    
+
+
+
+
     ///stuff that need to be moved later on lower layers
     private LoginResult decryptLoginResult(string loginResultString)
     {
@@ -137,13 +134,13 @@ Are you ready to vote?
 
     private Task<HttpResponseMessage> sendLoginRequest()
     {
-        LoginForm loginForm = new()
+        EllipticCurvePoint niosSharedKey = KeyGeneration.calculateMasterKey(ClientVariables.Prk, ClientVariables.NiosKey, ClientVariables.EllipticCurve);
+        NIOSPackage nIOSPackage = new()
         {
-            ClientPuk = ClientVariables.Puk,
-            EncryptedCredentials = new AesEncryptionProvider(ClientVariables.NiosKey)
-                .Encrypt(JsonSerializer.Serialize(identity), ClientVariables.NiosKey),
-            HashedCPR = new SHA256Managed().ComputeHash(
-                Encoding.ASCII.GetBytes(identity.Cpr))
+            clientPUk = ClientVariables.Puk,
+            //how to use ecies here?
+            encryptedCredentials = new AesEncryptionProvider(niosSharedKey.x.ToByteArray())//change this to a different value
+                .Encrypt(JsonSerializer.Serialize(identity), niosSharedKey.x.ToByteArray()),
         };
 
         JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
@@ -176,7 +173,7 @@ Are you ready to vote?
     {
         byte[] signatureKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsMac);
         byte[] encryptionKey = KDF.DeriveKey(ClientVariables.CertificateAuthority, KDF.DefaultRoundsEnc);
-        byte[] encryptedInitialPackage = 
+        byte[] encryptedInitialPackage =
             MAC.extractEncryptedContent(Encoding.ASCII.GetBytes(initialPackage), signatureKey);
         return new AesEncryptionProvider(encryptionKey).Decrypt(encryptedInitialPackage, encryptionKey);
 

@@ -6,7 +6,7 @@ namespace ElectMe_WebClient.ECIES.util
     {
         public static byte[] GetTag(byte[] encryptedMessage, byte[] Kmac)
         {
-            using (var hashMac256 = new HMACSHA256(Kmac))
+            /*using (var hashMac256 = new HMACSHA256(Kmac))
             {
                 byte[] hash = hashMac256.ComputeHash(encryptedMessage);
 
@@ -23,9 +23,9 @@ namespace ElectMe_WebClient.ECIES.util
                 }
 
                 return Tag;
-            }
+            }*/
+            return (new HMACSHA256(Kmac)).ComputeHash(encryptedMessage);
         }
-
 
         public static bool VerifyTag(byte[] message, byte[] KMac)
         {

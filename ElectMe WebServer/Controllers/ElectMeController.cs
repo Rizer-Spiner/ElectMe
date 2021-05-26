@@ -39,7 +39,6 @@ namespace ElectMe_WebServer.Controllers
         [Route("/connect")]
         public string GetInitialPackage()
         {
-            Console.WriteLine(getInitialPackage());
             return getInitialPackage();
         }
 
@@ -78,7 +77,7 @@ namespace ElectMe_WebServer.Controllers
             Signature signature = JsonSerializer.Deserialize<Signature>(message, serializerOptions);
 
             string loginFormSerialized = Verifying.getContentOfVerifiedSignature(signature);
-            LoginForm loginForm = JsonSerializer.Deserialize<LoginForm>(loginFormSerialized);
+            LoginPackage loginForm = JsonSerializer.Deserialize<LoginPackage>(loginFormSerialized);
 
             NIOSLoginResult niosLoginResult = _login.login(loginForm.EncryptedCredentials);
             if (niosLoginResult.Status.Equals(200))
@@ -109,17 +108,15 @@ namespace ElectMe_WebServer.Controllers
 
         private string getInitialPackage()
         {
-            InitialPackage certificate = EncryptionVariables.certificate;
+            InitialPackage initialPackage = EncryptionVariables.initialPackage;
             JsonSerializerOptions serializerOptions = new JsonSerializerOptions();
             serializerOptions.Converters.Add(new BigIntegerConverter());
-            string initialPackageJson = JsonSerializer.Serialize(certificate, serializerOptions);
+            string initialPackageJson = JsonSerializer.Serialize(initialPackage, serializerOptions);
 
-            byte[] signatureKey = KDF.DeriveKey(EncryptionVariables.CertificateAuthority, KDF.DefaultRoundsMac);
-            byte[] encryptionKey = KDF.DeriveKey(EncryptionVariables.CertificateAuthority, KDF.DefaultRoundsEnc);
-            byte[] encryptedInitialPackage =
-                new AesEncryptionProvider(encryptionKey).Encrypt(initialPackageJson, encryptionKey);
-            return Encoding.ASCII.GetString(
-                MAC.GetTag(encryptedInitialPackage, signatureKey));
+            Signature signature = Signing.signMessage(initialPackageJson, EncryptionVariables.EllipticCurveForClient, EncryptionVariables.PrkcForClient);
+            InitialPackageContainer container = new InitialPackageContainer() { initialPackage = initialPackage, signature = signature };
+            
+            return JsonSerializer.Serialize(container, serializerOptions);
         }
 
 

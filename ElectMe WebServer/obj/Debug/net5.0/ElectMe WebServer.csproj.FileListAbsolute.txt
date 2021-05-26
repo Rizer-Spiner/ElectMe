@@ -89,3 +89,5 @@ D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebSe
 D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\obj\Debug\net5.0\ElectMe WebServer.genruntimeconfig.cache
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebServer\bin\Debug\net5.0\System.Net.Http.Formatting.dll
 C:\Users\spiri\RiderProjects\ElectMe\ElectMe WebServer\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\System.Net.Http.Formatting.dll
+D:\ralup\VIA\SCP\ElectMeProject\ElectMe WebServer\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

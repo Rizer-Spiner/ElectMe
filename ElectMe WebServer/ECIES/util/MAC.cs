@@ -9,7 +9,7 @@ namespace ElectMe_WebServer.ECIES.util
         {
             using (var hashMac256 = new HMACSHA256(Kmac))
             {
-                byte[] hash = hashMac256.ComputeHash(encryptedMessage);
+                /*byte[] hash = hashMac256.ComputeHash(encryptedMessage);
 
                 byte[] Tag = new byte[hash.Length + encryptedMessage.Length];
 
@@ -23,7 +23,9 @@ namespace ElectMe_WebServer.ECIES.util
                     Tag[i] = encryptedMessage[i - hash.Length];
                 }
 
-                return Tag;
+                return Tag;*/
+
+                return (new HMACSHA256(Kmac)).ComputeHash(encryptedMessage);
             }
         }
 

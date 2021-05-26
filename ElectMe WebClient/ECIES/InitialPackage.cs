@@ -8,6 +8,7 @@ namespace ElectMe_WebClient.ECIES
     {
         public EllipticCurve EllipticCurve { get; set; }
         public EllipticCurvePoint ServerPuk { get; set; }
-        public byte[] NiosKey { get; set; }
+        public EllipticCurvePoint NiosKey { get; set; }
+        public string CA { get; set; }
     }
 }
