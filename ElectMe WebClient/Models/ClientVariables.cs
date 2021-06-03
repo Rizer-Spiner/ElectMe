@@ -13,7 +13,7 @@ namespace ElectMe_WebClient.ECIES
         public static EllipticCurvePoint NiosKey { get; set; }
         public static string CertificateAuthority = "Certificate Authority signature";
 
-        public static string ElectMeBaseURL = "https://localhost:5001";
+        public static string ElectMeBaseURL = "https://localhost:44352";
        
         public static EllipticCurvePoint SharedKey { get; set; }
         public static string DeviceToken { get; set; }

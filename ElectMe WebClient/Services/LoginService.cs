@@ -24,8 +24,11 @@ namespace ElectMe_WebClient.Services
                 response,
                 serializerOptions);
 
-            if (!Verifying.verifyMessage(initialPackageContainer.signature, JsonSerializer.Serialize(
-                    initialPackageContainer.initialPackage, serializerOptions),
+            if (!Verifying.verifyMessage(
+                initialPackageContainer.signature, JsonSerializer.Serialize(
+                    initialPackageContainer.initialPackage, 
+                    serializerOptions
+                    ),
                 initialPackageContainer.initialPackage.ServerPuk,
                 initialPackageContainer.initialPackage.EllipticCurve))
                 return false;

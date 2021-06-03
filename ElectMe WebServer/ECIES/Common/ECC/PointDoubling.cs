@@ -16,19 +16,29 @@ namespace ElectMe_WebServer.ECIES.Common.ECC
 
         private static BigInteger calculateX(EllipticCurve curve, EllipticCurvePoint point)
         {
-            return ModulusLogic.convertToModulus((calculateXNumerator(curve, point) * calculateXDenominator(curve, point)), curve.n);
+            return ModulusLogic.convertToModulus(
+                (calculateXNumerator(curve, point) * calculateXDenominator(curve, point)), 
+                curve.n
+                );
         }
 
         private static BigInteger calculateXNumerator(EllipticCurve curve, EllipticCurvePoint point)
         {
-            BigInteger xNumerator = 9 * point.x * point.x * point.x * point.x + 6 * curve.a * point.x * point.x + curve.a * curve.a - 8 * point.x * point.y * point.y;
+            BigInteger xNumerator = 
+                9 * point.x * point.x * point.x * point.x 
+                + 6 * curve.a * point.x * point.x 
+                + curve.a * curve.a 
+                - 8 * point.x * point.y * point.y;
             return ModulusLogic.convertToModulus(xNumerator, curve.n);
         }
 
         private static BigInteger calculateXDenominator(EllipticCurve curve, EllipticCurvePoint point)
         {
             BigInteger xDenominator = 4 * point.y * point.y;
-            return ModulusLogic.inverseModuloN(ModulusLogic.convertToModulus(xDenominator, curve.n), curve.n);
+            return ModulusLogic.inverseModuloN(
+                ModulusLogic.convertToModulus(xDenominator, curve.n),
+                curve.n
+                );
         }
 
         /*---------------------------------------------------------------------------------------------------------------------------
